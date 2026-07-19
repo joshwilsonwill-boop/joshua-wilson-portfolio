@@ -86,7 +86,7 @@ void main() {
 }
 `;
 
-const ChromePlane = () => {
+const ChromePlane = ({ isMobile }: { isMobile: boolean }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const mouse = useMousePosition();
@@ -102,17 +102,20 @@ const ChromePlane = () => {
   useFrame((state) => {
     if (materialRef.current) {
       materialRef.current.uniforms.u_time.value = state.clock.elapsedTime;
-      // Smooth damp mouse position
-      materialRef.current.uniforms.u_mouse.value.lerp(
-        new THREE.Vector2(mouse.x, mouse.y),
-        0.05
-      );
+      
+      if (!isMobile) {
+        // Smooth damp mouse position only on desktop
+        materialRef.current.uniforms.u_mouse.value.lerp(
+          new THREE.Vector2(mouse.x, mouse.y),
+          0.05
+        );
+      }
     }
   });
 
   return (
     <mesh ref={meshRef}>
-      <planeGeometry args={[5, 5, 32, 32]} />
+      <planeGeometry args={[5, 5, isMobile ? 8 : 32, isMobile ? 8 : 32]} />
       <shaderMaterial
         ref={materialRef}
         vertexShader={vertexShader}
@@ -126,9 +129,11 @@ const ChromePlane = () => {
 
 export default function LiquidChrome() {
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
   }, []);
 
   if (reducedMotion) {
@@ -142,9 +147,9 @@ export default function LiquidChrome() {
       <Canvas
         camera={{ position: [0, 0, 1], fov: 75 }}
         gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
-        dpr={[1, 1.5]}
+        dpr={isMobile ? 1 : [1, 1.5]}
       >
-        <ChromePlane />
+        <ChromePlane isMobile={isMobile} />
       </Canvas>
     </div>
   );
