@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -33,129 +33,43 @@ const PROJECTS = [
 ];
 
 export default function Work() {
-  const pinRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const mobileRef = useRef<HTMLDivElement>(null);
-
-  // We use a state to ensure we only run the GSAP logic matching the active breakpoint.
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  useEffect(() => {
-    const checkIsDesktop = () => setIsDesktop(window.matchMedia("(min-width: 1024px)").matches);
-    checkIsDesktop();
-    window.addEventListener('resize', checkIsDesktop);
-    return () => window.removeEventListener('resize', checkIsDesktop);
-  }, []);
+  const containerRef = useRef<HTMLElement>(null);
 
   useGSAP(() => {
-    if (!pinRef.current || !trackRef.current || !mobileRef.current) return;
+    if (!containerRef.current) return;
 
-    if (isDesktop) {
-      // Desktop: Horizontal Scroll
-      const scrollWidth = trackRef.current.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      
-      // Calculate how far to move the track so the last item touches the right edge
-      const distance = scrollWidth - viewportWidth;
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: pinRef.current,
-          start: "top top",
-          end: () => `+=${distance + window.innerHeight}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
+    const cards = containerRef.current.querySelectorAll(".project-card");
+    cards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        { autoAlpha: 0, y: 30 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
         }
-      });
+      );
+    });
 
-      tl.to(trackRef.current, { x: -distance, ease: "none" });
-
-      // Card entrance animation inside horizontal scroll
-      const cards = trackRef.current.querySelectorAll(".project-card-desktop");
-      cards.forEach((card) => {
-        gsap.fromTo(
-          card,
-          { scale: 0.92, rotateY: 8, transformPerspective: 1000 },
-          {
-            scale: 1,
-            rotateY: 0,
-            duration: 1,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              containerAnimation: tl,
-              start: "left 90%",
-              end: "left 40%",
-              scrub: 1,
-            }
-          }
-        );
-      });
-    } else {
-      // Mobile: Vertical Stack
-      const cards = mobileRef.current.querySelectorAll(".project-card-mobile");
-      cards.forEach((card) => {
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, y: 50 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none none"
-            }
-          }
-        );
-      });
-    }
-
-    return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
-    };
-  }, { scope: pinRef, dependencies: [isDesktop] });
+  }, { scope: containerRef });
 
   return (
-    <section id="work" className="w-full relative bg-[var(--bg-primary)]">
-      
-      {/* DESKTOP LAYOUT (Horizontal Scroll) */}
-      <div ref={pinRef} className="hidden lg:flex w-full h-screen items-center overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none px-[4rem] py-[8rem] flex flex-col justify-start z-10">
-          <div className="max-w-[400px]">
-            <h2 className="text-[4rem] font-bold tracking-tight mb-4 skew-on-scroll">Selected Work</h2>
-            <p className="text-[var(--text-secondary)] text-lg skew-on-scroll">
-              A few things I've built. Some public, some stealth, all deliberate.
-            </p>
-          </div>
-        </div>
-
-        <div ref={trackRef} className="flex h-full items-center pt-[20vh] pl-[40vw] pr-[10vw] gap-16 w-max">
-          {PROJECTS.map((project, idx) => (
-            <ProjectCard key={idx} project={project} className="project-card-desktop w-[45vw] max-w-[800px] h-[60vh] min-h-[500px]" />
-          ))}
-        </div>
+    <section id="work" ref={containerRef} className="w-full relative bg-[var(--bg-primary)] px-[clamp(1.5rem,5vw,4rem)] py-[clamp(8rem,20vh,16rem)] max-w-[1600px] mx-auto">
+      <div className="mb-20">
+        <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-bold tracking-tight mb-4 font-display text-[var(--text-primary)] skew-on-scroll">Selected Work</h2>
       </div>
 
-      {/* MOBILE LAYOUT (Vertical Stack) */}
-      <div ref={mobileRef} className="flex lg:hidden flex-col w-full px-[clamp(1.5rem,5vw,4rem)] py-[8rem]">
-        <div className="mb-12">
-          <h2 className="text-[clamp(2.5rem,8vw,4rem)] font-bold tracking-tight mb-4 skew-on-scroll">Selected Work</h2>
-          <p className="text-[var(--text-secondary)] text-lg skew-on-scroll">
-            A few things I've built. Some public, some stealth, all deliberate.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-12">
-          {PROJECTS.map((project, idx) => (
-            <ProjectCard key={idx} project={project} className="project-card-mobile w-full min-h-[400px]" />
-          ))}
-        </div>
+      <div className="flex flex-col gap-16 lg:gap-32">
+        {PROJECTS.map((project, idx) => (
+          <ProjectCard key={idx} project={project} className="project-card" />
+        ))}
       </div>
-
     </section>
   );
 }
@@ -164,43 +78,33 @@ function ProjectCard({ project, className }: { project: any; className?: string 
   return (
     <a
       href="#"
-      className={`group relative flex flex-col overflow-hidden rounded-xl bg-[var(--bg-surface)] border border-[rgba(255,255,255,0.06)] transition-colors hover:border-[rgba(255,255,255,0.15)] ${className}`}
+      className={`group relative flex flex-col lg:flex-row gap-8 lg:gap-16 w-full ${className}`}
     >
-      <div className="relative w-full h-1/2 min-h-[250px] overflow-hidden bg-[var(--bg-elevated)] border-b border-[rgba(255,255,255,0.04)]">
-        {/* Placeholder for project image */}
-        <div className="absolute inset-0 flex items-center justify-center text-[var(--text-tertiary)] font-mono text-xl tracking-[0.2em] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]">
-          {project.imageText}
-        </div>
-      </div>
-      
-      <div className="p-8 flex flex-col flex-1 justify-between gap-6">
-        <div>
-          <div className="flex items-center gap-3 mb-3">
-            <h3 className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
-              {project.title}
-            </h3>
-            <span className="px-2 py-0.5 rounded text-[10px] font-mono tracking-wider font-bold bg-[rgba(255,255,255,0.1)] text-[var(--text-primary)]">
-              {project.tag}
-            </span>
-          </div>
-          <p className="text-[var(--text-secondary)] leading-[1.6] text-[0.95rem]">
+      <div className="lg:w-1/2 flex flex-col justify-center order-2 lg:order-1 pl-0 lg:pl-[clamp(2rem,6vw,8rem)] pr-0 lg:pr-[2rem]">
+        <div className="mb-6">
+          <span className="block text-[0.75rem] font-mono tracking-[0.2em] uppercase text-[var(--text-tertiary)] mb-4">
+            {project.tag}
+          </span>
+          <h3 className="font-display font-bold text-[clamp(2rem,4vw,3.5rem)] tracking-tight text-[var(--text-primary)] leading-[1.1] mb-6 transition-colors group-hover:text-[var(--chrome-light)]">
+            {project.title}
+          </h3>
+          <p className="text-[clamp(0.875rem,1.2vw,1.125rem)] text-[var(--text-secondary)] leading-[1.7] max-w-[50ch]">
             {project.desc}
           </p>
         </div>
         
-        <div className="flex items-end justify-between mt-auto">
-          <div className="flex flex-wrap gap-2 max-w-[70%]">
-            {project.tags.map((tag: string) => (
-              <span key={tag} className="px-3 py-1 rounded-full border border-[rgba(255,255,255,0.1)] text-xs font-mono text-[var(--text-secondary)]">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="opacity-0 translate-x-[-10px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-            <MagneticButton className="text-sm font-medium text-[var(--accent-cyan)] whitespace-nowrap">
-              View Project &rarr;
-            </MagneticButton>
-          </div>
+        <div className="flex flex-wrap gap-3 mt-8">
+          {project.tags.map((tag: string) => (
+            <span key={tag} className="px-4 py-1.5 rounded-full border border-[rgba(255,255,255,0.1)] text-[0.75rem] font-mono text-[var(--text-secondary)]">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="lg:w-1/2 relative min-h-[300px] lg:min-h-[500px] overflow-hidden rounded-[1rem] bg-[var(--bg-surface)] border border-[rgba(255,255,255,0.06)] order-1 lg:order-2">
+        <div className="absolute inset-0 flex items-center justify-center text-[var(--text-tertiary)] font-mono text-xl tracking-[0.2em] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]">
+          {project.imageText}
         </div>
       </div>
     </a>

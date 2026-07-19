@@ -16,16 +16,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     if (isReducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      lerp: 0.1, // Added from D3 spec
+      lerp: 0.08, // Heavier, more deliberate feel
       smoothWheel: true,
-    } as any);
+    });
 
     // Velocity-based skew effect on elements with .skew-on-scroll class
     lenis.on("scroll", (e) => {

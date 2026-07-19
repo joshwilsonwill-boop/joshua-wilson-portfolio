@@ -58,24 +58,29 @@ float snoise(vec2 v){
 void main() {
   vec2 st = vUv;
   
-  float noiseVal = snoise(st * 2.0 + u_time * 0.05);
+  // Parallax based on mouse
+  st += u_mouse * 0.05;
   
-  // Base chrome colors (Deep charcoal and iridescent shifts)
-  vec3 baseColor = vec3(0.04, 0.04, 0.06); // #0a0a0f roughly
-  vec3 highlight1 = vec3(0.10, 0.10, 0.18); // #1a1a2e
-  vec3 highlight2 = vec3(0.06, 0.20, 0.38); // #0f3460
+  float noiseVal = snoise(st * 3.0 + u_time * 0.2);
+  
+  // Base chrome color
+  vec3 silver = vec3(0.75, 0.75, 0.75);
+  vec3 cyan = vec3(0.0, 0.83, 1.0);
+  vec3 warmWhite = vec3(1.0, 0.96, 0.9);
   
   // Mixing based on noise
-  vec3 color = mix(baseColor, highlight1, noiseVal * 0.5 + 0.5);
-  color = mix(color, highlight2, snoise(st * 4.0 - u_time * 0.08) * 0.5 + 0.5);
+  vec3 color = mix(silver, cyan, noiseVal * 0.5 + 0.5);
+  color = mix(color, warmWhite, snoise(st * 5.0 - u_time * 0.3) * 0.5 + 0.5);
   
   // Fake specular / fresnel
   vec3 viewDir = normalize(vec3(0.0, 0.0, 1.0));
-  vec3 normal = normalize(vNormal + vec3(noiseVal * 0.1, snoise(st * 3.0) * 0.1, 1.0));
-  float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 4.0);
+  vec3 normal = normalize(vNormal + vec3(noiseVal * 0.2, snoise(st * 4.0) * 0.2, 1.0));
+  float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.0);
   
-  // Subtle metallic sheen
-  color += fresnel * 0.2;
+  color += fresnel * 0.8;
+  
+  // Darken overall to fit the dark theme
+  color *= 0.3;
 
   gl_FragColor = vec4(color, 1.0);
 }
