@@ -16,17 +16,9 @@ const STACK = [
   { name: "GSAP", desc: "Scroll-driven timelines, complex sequences" },
   { name: "Three.js / R3F", desc: "WebGL scenes, spatial experiences" },
   { name: "Python", desc: "Automation, data, backend when needed" },
-  { name: "Supabase", desc: "Postgres, auth, real-time" },
-  { name: "PostgreSQL", desc: "Relational data" },
-  { name: "pgvector", desc: "Vector search" },
-  { name: "Cloudflare R2", desc: "Object storage" },
-  { name: "Groq", desc: "LLM inference" },
-  { name: "AssemblyAI", desc: "Audio transcription" },
-  { name: "WebRTC", desc: "Real-time communication" },
-  { name: "Rust", desc: "Systems programming" },
-  { name: "Docker", desc: "Containerization" },
-  { name: "Temporal", desc: "Durable execution" },
-  { name: "Modal", desc: "Serverless GPU" },
+  { name: "Git", desc: "Version control, CI/CD workflows" },
+  { name: "Figma", desc: "Design systems, prototyping" },
+  { name: "Vercel", desc: "Edge deployment, performance" },
 ];
 
 export default function Stack() {
@@ -71,7 +63,7 @@ export default function Stack() {
           </ScrollRevealText>
         </div>
 
-        <div className="lg:w-[65%] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        <div className="lg:w-[65%] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {STACK.map((tech, index) => (
             <div
               key={index}

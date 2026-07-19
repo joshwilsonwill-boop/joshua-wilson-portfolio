@@ -13,21 +13,9 @@ gsap.registerPlugin(ScrollTrigger);
 // Sample post placeholders
 const POSTS = [
   {
-    date: "Oct 30, 2025",
-    title: "Building Prometheus: A Post-Mortem",
-    excerpt: "Six months of 6DOF video matting, RL feedback loops, and GPU orchestration. What broke, what worked, what's next.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    date: "Sep 15, 2025",
-    title: "The Cost of Precision",
-    excerpt: "Most people optimize for speed. I optimize for inevitability. Here's why that's expensive and worth it.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    date: "Aug 1, 2025",
-    title: "Why I Don't Believe in Templates",
-    excerpt: "Every product should feel like it has a pulse. Templates kill that pulse.",
+    date: "May 5, 2025",
+    title: "Building Trust Through Clear Design",
+    excerpt: "How thoughtful visual choices create a stronger sense of reliability for modern brands.",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
   },
   {
@@ -35,12 +23,6 @@ const POSTS = [
     title: "The Role of Art Direction in Branding",
     excerpt: "Why visual direction helps brands create emotion and a distinct point of view.",
     image: "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1200",
-  },
-  {
-    date: "May 5, 2025",
-    title: "Building Trust Through Clear Design",
-    excerpt: "How thoughtful visual choices create a stronger sense of reliability for modern brands.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
   },
 ];
 

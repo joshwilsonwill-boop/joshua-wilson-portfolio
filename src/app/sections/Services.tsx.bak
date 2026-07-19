@@ -8,22 +8,28 @@ import ScrollRevealText from "../components/ScrollRevealText";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// TODO: Replace with actual services
+// Suggested structure:
+// • Creative Technology / WebGL, Shaders, Spatial Experiences
+// • Full-Stack Engineering / Next.js, Infrastructure, APIs
+// • Product Consulting / Architecture, Direction, Strategy
+// • AI-Native Tools / Video, Automation, Intelligence
 const SERVICES = [
   {
-    name: "Creative Technology",
-    tags: ["WebGL", "Shaders", "Spatial Experiences", "3D Web"],
+    name: "Website Migration",
+    tags: ["Web Migration", "Optimization", "Framer Rebuild"],
   },
   {
-    name: "Full-Stack Engineering",
-    tags: ["Next.js", "Infrastructure", "AI APIs", "Edge Computing"],
+    name: "Framer Templates",
+    tags: ["Startup", "Agency", "SaaS"],
   },
   {
-    name: "AI-Native Product Design",
-    tags: ["Video Intelligence", "RL Systems", "Automation", "GPU Orchestration"],
+    name: "Frontend Development",
+    tags: ["UI Dev", "Responsive Layouts", "Web Performance"],
   },
   {
-    name: "Systems Architecture",
-    tags: ["Temporal", "Modal", "RunPod", "Docker", "CI/CD"],
+    name: "Product Consulting",
+    tags: ["Product Direction", "Web Strategy", "Technical Guidance"],
   },
 ];
 

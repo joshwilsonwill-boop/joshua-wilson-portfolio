@@ -7,8 +7,6 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { usePathname, useRouter } from "next/navigation";
-
 const LINKS = [
   { label: "Home", href: "#hero" },
   { label: "About Me", href: "#about" },
@@ -19,21 +17,6 @@ const LINKS = [
 
 export default function Footer() {
   const containerRef = useRef<HTMLElement>(null);
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    if (pathname === '/') {
-      const el = document.querySelector(href);
-      if (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    } else {
-      router.push(`/${href}`);
-    }
-  };
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -72,7 +55,6 @@ export default function Footer() {
               <a 
                 key={link.label}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
                 className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.08)] text-[0.875rem] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[rgba(255,255,255,0.2)] transition-colors"
               >
                 {link.label}
@@ -95,8 +77,8 @@ export default function Footer() {
       </div>
 
       <div className="footer-element z-10 mb-8">
-        <p className="text-center text-[0.75rem] text-[var(--text-tertiary)]">
-          © {new Date().getFullYear()} Joshua Wilson
+        <p className="text-[0.75rem] text-[var(--text-tertiary)]">
+          © {new Date().getFullYear()} Joshua Wilson. Built with Next.js, R3F, and GSAP.
         </p>
       </div>
 
