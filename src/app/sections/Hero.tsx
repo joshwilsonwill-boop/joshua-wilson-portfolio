@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ImageParallax from "../components/ImageParallax";
 import ScrollRevealText from "../components/ScrollRevealText";
 import Typewriter from "../components/Typewriter";
+import { motion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,11 +72,66 @@ export default function Hero() {
       className="relative w-full min-h-[100dvh] flex flex-col justify-center overflow-hidden"
       id="hero"
     >
-      {/* Floating 2D Assets */}
-      <img src="/floating/sparkle.png" alt="" className="absolute top-[5%] lg:top-[10%] left-[2%] lg:left-[8%] w-10 md:w-16 lg:w-20 opacity-70 animate-float-1 z-[5] pointer-events-none will-change-transform" />
-      <img src="/floating/lightning.png" alt="" className="absolute top-[12%] right-[2%] lg:right-[8%] w-8 md:w-14 lg:w-16 opacity-70 animate-float-2 z-[5] pointer-events-none will-change-transform" />
-      <img src="/floating/sparkle.png" alt="" className="absolute bottom-[15%] right-[15%] lg:right-[25%] w-8 md:w-12 lg:w-16 opacity-60 animate-float-3 z-[5] pointer-events-none will-change-transform hidden md:block" />
-      <img src="/floating/lightning.png" alt="" className="absolute bottom-[20%] left-[10%] lg:left-[15%] w-8 md:w-12 lg:w-14 opacity-60 animate-float-1 z-[5] pointer-events-none will-change-transform hidden md:block" />
+      {/* Floating 2D Assets - Now Draggable and larger on mobile */}
+      <motion.div
+        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+        className="absolute top-[10%] lg:top-[15%] left-[5%] lg:left-[8%] z-[20]"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/sparkle.png" 
+          alt="Sparkle" 
+          className="w-16 md:w-20 lg:w-24 opacity-80 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+        className="absolute top-[15%] lg:top-[12%] right-[5%] lg:right-[8%] z-[20]"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/lightning.png" 
+          alt="Lightning" 
+          className="w-14 md:w-16 lg:w-20 opacity-80 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -25, 0], rotate: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+        className="absolute bottom-[20%] lg:bottom-[15%] right-[10%] lg:right-[25%] z-[20] hidden md:block"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/sparkle.png" 
+          alt="Sparkle" 
+          className="w-14 md:w-16 lg:w-20 opacity-70 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
+        className="absolute bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%] z-[20] hidden md:block"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/lightning.png" 
+          alt="Lightning" 
+          className="w-12 md:w-14 lg:w-16 opacity-70 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
       
       {/* Desktop Split Grid / Mobile Stack */}
       <div className="w-full max-w-[1600px] mx-auto px-[clamp(1.5rem,5vw,4rem)] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10 pt-32 pb-20 lg:py-0">
