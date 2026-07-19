@@ -17,7 +17,6 @@ const PROJECTS = [
     desc: "An AI-native video editing platform with 6DOF video matting, RL feedback loops, and GPU-orchestrated rendering. Built for creators who refuse to compromise on quality.",
     tags: ["Next.js", "WebGL", "Rust"],
     image: "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?auto=format&fit=crop&q=80&w=1200",
-    link: "/prometheus",
   },
   {
     title: "Cartography",
@@ -91,7 +90,7 @@ export default function Work() {
         {PROJECTS.map((project, idx) => (
           <a 
             key={idx}
-            href={project.link || "/work"}
+            href="/work"
             className="project-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
           >
             {/* Thumbnail */}

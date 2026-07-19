@@ -21,7 +21,6 @@ void main() {
 const fragmentShader = `
 uniform float u_time;
 uniform vec2 u_mouse;
-uniform float u_velocity;
 varying vec2 vUv;
 varying vec3 vPosition;
 varying vec3 vNormal;
@@ -62,27 +61,27 @@ void main() {
   // Parallax based on mouse
   st += u_mouse * 0.05;
   
-  // Displacement based on cursor velocity
-  st += u_velocity * 0.05;
+  float noiseVal = snoise(st * 3.0 + u_time * 0.2);
   
-  float noiseVal = snoise(st * 3.0 + u_time * 0.1 + u_velocity * 1.5);
-  
-  // Base chrome color (v1 aesthetic: dark void, metallic highlights)
-  vec3 darkBase = vec3(0.04, 0.04, 0.06);     // #0a0a0f
-  vec3 chromeHighlight = vec3(0.96, 0.96, 0.97); // #f5f5f7
-  vec3 midtone = vec3(0.23, 0.23, 0.24);      // #3a3a3c
+  // Base chrome color
+  vec3 silver = vec3(0.75, 0.75, 0.75);
+  vec3 cyan = vec3(0.0, 0.83, 1.0);
+  vec3 warmWhite = vec3(1.0, 0.96, 0.9);
   
   // Mixing based on noise
-  vec3 color = mix(darkBase, midtone, noiseVal * 0.5 + 0.5);
-  color = mix(color, chromeHighlight, snoise(st * 5.0 - u_time * 0.15) * 0.2 + 0.05);
+  vec3 color = mix(silver, cyan, noiseVal * 0.5 + 0.5);
+  color = mix(color, warmWhite, snoise(st * 5.0 - u_time * 0.3) * 0.5 + 0.5);
   
   // Fake specular / fresnel
   vec3 viewDir = normalize(vec3(0.0, 0.0, 1.0));
   vec3 normal = normalize(vNormal + vec3(noiseVal * 0.2, snoise(st * 4.0) * 0.2, 1.0));
   float fresnel = pow(1.0 - max(dot(normal, viewDir), 0.0), 3.0);
   
-  color += fresnel * 0.3; // subtle metallic sheen
+  color += fresnel * 0.8;
   
+  // Darken overall to fit the dark theme
+  color *= 0.3;
+
   gl_FragColor = vec4(color, 1.0);
 }
 `;
@@ -91,13 +90,11 @@ const ChromePlane = ({ isMobile }: { isMobile: boolean }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const mouse = useMousePosition();
-  const prevMouse = useRef(new THREE.Vector2(0, 0));
 
   const uniforms = useMemo(
     () => ({
       u_time: { value: 0 },
       u_mouse: { value: new THREE.Vector2(0, 0) },
-      u_velocity: { value: 0 },
     }),
     []
   );
@@ -107,21 +104,10 @@ const ChromePlane = ({ isMobile }: { isMobile: boolean }) => {
       materialRef.current.uniforms.u_time.value = state.clock.elapsedTime;
       
       if (!isMobile) {
-        const currentMouse = new THREE.Vector2(mouse.x, mouse.y);
-        const velocity = currentMouse.distanceTo(prevMouse.current);
-        prevMouse.current.copy(currentMouse);
-
         // Smooth damp mouse position only on desktop
         materialRef.current.uniforms.u_mouse.value.lerp(
-          currentMouse,
+          new THREE.Vector2(mouse.x, mouse.y),
           0.05
-        );
-
-        // Smooth velocity
-        materialRef.current.uniforms.u_velocity.value = THREE.MathUtils.lerp(
-          materialRef.current.uniforms.u_velocity.value,
-          velocity * 15.0,
-          0.1
         );
       }
     }
