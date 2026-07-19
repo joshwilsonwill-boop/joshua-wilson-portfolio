@@ -66,13 +66,13 @@ export default function Stack() {
           {STACK.map((tech, index) => (
             <div
               key={index}
-              className="tech-card group flex flex-col gap-3 p-6 rounded-[0.75rem] border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.03)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-[rgba(255,255,255,0.12)]"
+              className="tech-card group flex flex-col gap-3 p-6 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[var(--bg-surface)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-[6px] hover:border-[var(--accent-cyan)] hover:shadow-[0_0_20px_rgba(0,212,255,0.1)] hover:bg-[var(--bg-elevated)]"
             >
-              <div className="w-8 h-8 rounded-[0.5rem] bg-[var(--chrome-dark)] flex items-center justify-center mb-2">
-                <div className="w-4 h-4 bg-[var(--text-tertiary)] rounded-sm transition-colors duration-300 group-hover:bg-[var(--chrome-light)]" />
+              <div className="w-8 h-8 rounded bg-[var(--chrome-dark)] flex items-center justify-center mb-2">
+                <div className="w-4 h-4 bg-[var(--text-tertiary)] rounded-sm group-hover:bg-[var(--accent-cyan)] transition-colors duration-300 shadow-[0_0_0_rgba(0,212,255,0)] group-hover:shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
               </div>
-              <h3 className="font-mono text-[var(--text-primary)] tracking-tight text-[clamp(1.25rem,2vw,1.5rem)]">{tech.name}</h3>
-              <p className="text-[clamp(0.875rem,1.2vw,1.125rem)] text-[var(--text-tertiary)] leading-[1.6]">{tech.desc}</p>
+              <h3 className="font-mono text-[var(--text-primary)] tracking-tight">{tech.name}</h3>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{tech.desc}</p>
             </div>
           ))}
         </div>
