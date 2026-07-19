@@ -7,6 +7,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ImageParallax from "../components/ImageParallax";
 import ScrollRevealText from "../components/ScrollRevealText";
 import Typewriter from "../components/Typewriter";
+import { typewriterPhrases } from "../lib/phrases";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -121,20 +122,7 @@ export default function Hero() {
           
           <div className="h-[2.5rem] flex items-center mb-6">
             <Typewriter 
-              phrases={[
-                "Engineering the Invisible.",
-                "Building systems that feel alive.",
-                "From WebGL to serverless.",
-                "Precision is not an option. It's the baseline.",
-                "I don't believe in templates.",
-                "Let's build something that shouldn't exist.",
-                "Your code is bad and you should feel bad.",
-                "I architect. You execute. We ship.",
-                "If it compiles on the first try, you're not trying hard enough.",
-                "I don't do meetings. I do deployments.",
-                "My stack is not a list. It's a loop.",
-                "Break things. Fix them. Break them better."
-              ]} 
+              phrases={typewriterPhrases} 
               className="typewriter-text" 
             />
           </div>

@@ -37,7 +37,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${plusJakarta.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[var(--accent-cyan)] selection:text-black">
-        <div className="noise-overlay" />
         <SmoothScroll>
           <ScrollProgress />
           {children}
