@@ -6,11 +6,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ScrollRevealText from "../components/ScrollRevealText";
 import DualXPopup from "../components/DualXPopup";
+import { useForm, ValidationError } from "@formspree/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const containerRef = useRef<HTMLElement>(null);
+  const [state, handleSubmit] = useForm('xvzeaezk');
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -85,62 +87,65 @@ export default function Contact() {
 
         {/* Right Column - Form */}
         <div className="lg:w-7/12">
-          <form 
-            className="contact-animate flex flex-col gap-6" 
-            onSubmit={(e) => {
-              e.preventDefault();
-              const formData = new FormData(e.target as HTMLFormElement);
-              const name = formData.get('name');
-              const email = formData.get('email');
-              const project = formData.get('project');
+          {state.succeeded ? (
+            <div className="contact-animate flex flex-col items-center justify-center h-full min-h-[300px] border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] rounded-[0.75rem] p-8 text-center">
+              <h3 className="font-display text-[2rem] font-bold tracking-tight mb-2 text-[var(--text-primary)]">Message Received</h3>
+              <p className="text-[var(--text-secondary)]">Thanks for reaching out! I'll get back to you shortly.</p>
+            </div>
+          ) : (
+            <form 
+              className="contact-animate flex flex-col gap-6" 
+              onSubmit={handleSubmit}
+            >
+              
+              <div className="flex flex-col md:flex-row gap-6">
+                <div className="flex flex-col gap-2 flex-1">
+                  <label htmlFor="name" className="text-[0.875rem] text-[var(--text-secondary)]">Name</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name"
+                    placeholder="Enter your name" 
+                    className="w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[0.75rem] px-5 py-4 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[rgba(255,255,255,0.2)] focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all"
+                    required
+                  />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-500 text-sm" />
+                </div>
+                <div className="flex flex-col gap-2 flex-1">
+                  <label htmlFor="email" className="text-[0.875rem] text-[var(--text-secondary)]">Email</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    placeholder="Enter your email" 
+                    className="w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[0.75rem] px-5 py-4 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[rgba(255,255,255,0.2)] focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all"
+                    required
+                  />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-sm" />
+                </div>
+              </div>
 
-              const subject = `Project Inquiry from ${name}`;
-              const body = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AProject:%0D%0A${project}`;
-
-              window.location.href = `mailto:joshwilsonwill@gmail.com?subject=${subject}&body=${body}`;
-            }}
-          >
-            
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex flex-col gap-2 flex-1">
-                <label htmlFor="name" className="text-[0.875rem] text-[var(--text-secondary)]">Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name"
-                  placeholder="Enter your name" 
-                  className="w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[0.75rem] px-5 py-4 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[rgba(255,255,255,0.2)] focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all"
+              <div className="flex flex-col gap-2">
+                <label htmlFor="project" className="text-[0.875rem] text-[var(--text-secondary)]">Your Project</label>
+                <textarea 
+                  id="project" 
+                  name="project"
+                  placeholder="Tell me about your project" 
+                  className="w-full min-h-[160px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[0.75rem] px-5 py-4 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[rgba(255,255,255,0.2)] focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all resize-y"
                   required
                 />
+                <ValidationError prefix="Project" field="project" errors={state.errors} className="text-red-500 text-sm" />
               </div>
-              <div className="flex flex-col gap-2 flex-1">
-                <label htmlFor="email" className="text-[0.875rem] text-[var(--text-secondary)]">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  placeholder="Enter your email" 
-                  className="w-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[0.75rem] px-5 py-4 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[rgba(255,255,255,0.2)] focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all"
-                  required
-                />
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="project" className="text-[0.875rem] text-[var(--text-secondary)]">Your Project</label>
-              <textarea 
-                id="project" 
-                name="project"
-                placeholder="Tell me about your project" 
-                className="w-full min-h-[160px] bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] rounded-[0.75rem] px-5 py-4 text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[rgba(255,255,255,0.2)] focus:shadow-[0_0_15px_rgba(255,255,255,0.05)] transition-all resize-y"
-                required
-              />
-            </div>
-
-            <button type="submit" className="liquid-chrome-btn mt-4 w-full md:w-auto self-start px-8 py-4 rounded-full font-bold text-[1rem]">
-              Submit
-            </button>
-          </form>
+              <button 
+                type="submit" 
+                disabled={state.submitting}
+                className="liquid-chrome-btn mt-4 w-full md:w-auto self-start px-8 py-4 rounded-full font-bold text-[1rem] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              >
+                {state.submitting ? "Sending..." : "Submit"}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>
