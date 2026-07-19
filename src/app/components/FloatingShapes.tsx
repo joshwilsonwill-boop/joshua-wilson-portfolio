@@ -16,22 +16,22 @@ function Sparkle(props: any) {
           <octahedronGeometry args={[1, 0]} />
           <meshPhysicalMaterial 
             color="#00d4ff" 
-            metalness={0.9} 
-            roughness={0.1}
+            metalness={1} 
+            roughness={0}
             clearcoat={1}
             emissive="#00d4ff"
-            emissiveIntensity={0.2}
+            emissiveIntensity={2}
           />
         </mesh>
         <mesh rotation={[0, 0, Math.PI / 2]}>
           <octahedronGeometry args={[1, 0]} />
           <meshPhysicalMaterial 
             color="#00d4ff" 
-            metalness={0.9} 
-            roughness={0.1}
+            metalness={1} 
+            roughness={0}
             clearcoat={1}
             emissive="#00d4ff"
-            emissiveIntensity={0.2}
+            emissiveIntensity={2}
           />
         </mesh>
       </group>
@@ -73,13 +73,13 @@ function Lightning(props: any) {
       <mesh ref={meshRef} geometry={geometry}>
         <meshPhysicalMaterial 
           color="#ffffff" 
-          metalness={0.8} 
-          roughness={0.2}
-          transmission={0.9} // Glass effect
-          thickness={0.5}
+          metalness={1} 
+          roughness={0}
+          transmission={0.9}
+          thickness={1}
           ior={1.5}
-          emissive="#ffffff"
-          emissiveIntensity={0.1}
+          emissive="#00d4ff"
+          emissiveIntensity={1}
         />
       </mesh>
     </Float>
@@ -93,19 +93,21 @@ function AINode(props: any) {
       <group>
         {/* Inner glowing core */}
         <mesh>
-          <icosahedronGeometry args={[0.7, 1]} />
+          <icosahedronGeometry args={[0.8, 1]} />
           <meshBasicMaterial color="#00d4ff" wireframe={false} />
         </mesh>
         {/* Outer tech wireframe */}
         <mesh>
           <icosahedronGeometry args={[1, 0]} />
           <meshPhysicalMaterial 
-            color="#a1a1a6" 
+            color="#ffffff" 
             metalness={1} 
-            roughness={0.1} 
+            roughness={0} 
             wireframe={true}
             transparent={true}
-            opacity={0.6}
+            opacity={0.8}
+            emissive="#00d4ff"
+            emissiveIntensity={0.5}
           />
         </mesh>
       </group>
@@ -137,24 +139,24 @@ export default function FloatingShapes() {
         
         {/* Adjust positions to surround the Hero text and portrait nicely */}
         <Sparkle 
-          position={isMobile ? [-1.5, 4, 0] : [-4, 3, 0]} 
-          scale={isMobile ? [0.3, 0.9, 0.3] : [0.4, 1.2, 0.4]} 
+          position={isMobile ? [-1, 2.5, 0] : [-3, 2, 1]} 
+          scale={isMobile ? [0.6, 1.8, 0.6] : [0.8, 2.4, 0.8]} 
           rotation={[0, 0, 0.2]} 
         />
         <Lightning 
-          position={isMobile ? [2, 3, -2] : [5, 2, -2]} 
-          scale={isMobile ? 0.4 : 0.6} 
+          position={isMobile ? [1.5, 2, -1] : [3.5, 1, -1]} 
+          scale={isMobile ? 0.8 : 1.2} 
           rotation={[0, 0, -0.2]} 
         />
         <AINode 
-          position={isMobile ? [-2, -3, -1] : [-5, -2, -1]} 
-          scale={isMobile ? 0.5 : 0.8} 
+          position={isMobile ? [-1.5, -2, 0] : [-3.5, -1, 1]} 
+          scale={isMobile ? 1 : 1.5} 
         />
         
         {/* A second smaller sparkle for balance near the portrait */}
         <Sparkle 
-          position={isMobile ? [1.5, -4, 1] : [4, -3, 1]} 
-          scale={isMobile ? [0.15, 0.45, 0.15] : [0.2, 0.6, 0.2]} 
+          position={isMobile ? [1.5, -2.5, 2] : [3, -2, 2]} 
+          scale={isMobile ? [0.3, 0.9, 0.3] : [0.5, 1.5, 0.5]} 
           rotation={[0, 0, -0.4]} 
         />
 
