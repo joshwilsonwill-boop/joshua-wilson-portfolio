@@ -174,17 +174,10 @@ export default function Hero() {
         
       </div>
 
-      <div className="scroll-indicator absolute bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+      <div className="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
         <span className="scroll-indicator-text opacity-40 text-[0.75rem] uppercase tracking-[0.2em] text-[var(--text-tertiary)] font-system">
           SCROLL TO EXPLORE
         </span>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden z-10 py-2 border-t border-[rgba(255,255,255,0.02)] bg-[rgba(10,10,15,0.8)] backdrop-blur-sm">
-        <div className="flex whitespace-nowrap animate-ticker">
-          <span className="mx-4 text-[0.75rem] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">Currently building Prometheus · 6DOF video matting · RL feedback loops · GPU-orchestrated rendering · Next.js · WebGL · Rust · Python · Supabase · Temporal · Modal · </span>
-          <span className="mx-4 text-[0.75rem] uppercase tracking-[0.1em] text-[var(--text-tertiary)]">Currently building Prometheus · 6DOF video matting · RL feedback loops · GPU-orchestrated rendering · Next.js · WebGL · Rust · Python · Supabase · Temporal · Modal · </span>
-        </div>
       </div>
     </section>
   );
