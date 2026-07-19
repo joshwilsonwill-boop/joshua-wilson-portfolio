@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { Float, Environment } from "@react-three/drei";
@@ -114,24 +114,49 @@ function AINode(props: any) {
 }
 
 export default function FloatingShapes() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+
   return (
     <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
       <Canvas
         camera={{ position: [0, 0, 10], fov: 45 }}
         gl={{ alpha: true, antialias: true }}
-        dpr={[1, 1.5]} // Optimize performance
+        dpr={isMobile ? 1 : [1, 1.5]} // Optimize performance for mobile
       >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} color="#ffffff" />
         <pointLight position={[-10, -10, -5]} intensity={0.5} color="#00d4ff" />
         
         {/* Adjust positions to surround the Hero text and portrait nicely */}
-        <Sparkle position={[-4, 3, 0]} scale={[0.4, 1.2, 0.4]} rotation={[0, 0, 0.2]} />
-        <Lightning position={[5, 2, -2]} scale={0.6} rotation={[0, 0, -0.2]} />
-        <AINode position={[-5, -2, -1]} scale={0.8} />
+        <Sparkle 
+          position={isMobile ? [-1.5, 4, 0] : [-4, 3, 0]} 
+          scale={isMobile ? [0.3, 0.9, 0.3] : [0.4, 1.2, 0.4]} 
+          rotation={[0, 0, 0.2]} 
+        />
+        <Lightning 
+          position={isMobile ? [2, 3, -2] : [5, 2, -2]} 
+          scale={isMobile ? 0.4 : 0.6} 
+          rotation={[0, 0, -0.2]} 
+        />
+        <AINode 
+          position={isMobile ? [-2, -3, -1] : [-5, -2, -1]} 
+          scale={isMobile ? 0.5 : 0.8} 
+        />
         
         {/* A second smaller sparkle for balance near the portrait */}
-        <Sparkle position={[4, -3, 1]} scale={[0.2, 0.6, 0.2]} rotation={[0, 0, -0.4]} />
+        <Sparkle 
+          position={isMobile ? [1.5, -4, 1] : [4, -3, 1]} 
+          scale={isMobile ? [0.15, 0.45, 0.15] : [0.2, 0.6, 0.2]} 
+          rotation={[0, 0, -0.4]} 
+        />
 
         <Environment preset="city" />
       </Canvas>
