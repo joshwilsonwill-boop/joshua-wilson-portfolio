@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ScrollRevealText from "../components/ScrollRevealText";
+import DualXPopup from "../components/DualXPopup";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,25 +48,48 @@ export default function Contact() {
             Have a project or need help? Fill out the form, and I'll get back to you soon.
           </ScrollRevealText>
 
-          <div className="contact-animate flex flex-wrap gap-6 text-[var(--text-tertiary)]">
-            <a href="#" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Twitter">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
-            </a>
-            <a href="#" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Instagram">
+          <div className="contact-animate flex flex-wrap gap-6 text-[var(--text-tertiary)] items-center">
+            <DualXPopup />
+            
+            <a href="https://instagram.com/i_m_joshwilson" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Instagram">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
             </a>
-            <a href="#" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="LinkedIn">
+            
+            {/* TODO: Add LinkedIn */}
+            {/* <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="LinkedIn">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a> */}
+            
+            <a href="https://t.me/josh_will" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Telegram">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             </a>
-            <a href="#" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="YouTube">
+            
+            <a href="https://youtube.com/@joshuaayogu1916" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="YouTube">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
             </a>
-            <a href="#" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="GitHub">
+            
+            <a href="https://github.com/joshwilsonwill-boop" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="GitHub">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             </a>
-            <a href="mailto:hello@joshuawilson.dev" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Email">
+            
+            <a href="mailto:joshwilsonwill@gmail.com" className="hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Email">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </a>
+            
+            <button 
+              onClick={() => {
+                navigator.clipboard.writeText("joshwill1896");
+                const btn = document.getElementById("discord-btn");
+                if (btn) {
+                  btn.innerText = "Copied!";
+                  setTimeout(() => btn.innerText = "Discord: joshwill1896", 2000);
+                }
+              }}
+              className="ml-auto md:ml-0 flex items-center gap-2 px-3 py-1.5 rounded-full border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.02)] transition-all text-[0.75rem] font-mono tracking-wider hover:text-[var(--text-primary)]"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="discord-btn">Discord: joshwill1896</span>
+            </button>
           </div>
         </div>
 

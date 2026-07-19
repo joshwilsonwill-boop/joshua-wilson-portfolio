@@ -61,15 +61,18 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <div className="flex flex-col gap-2">
-            <span className="text-[0.75rem] text-[var(--text-tertiary)] uppercase tracking-wider">/Contact</span>
-            <a href="mailto:joshua@prometheus.io" className="group text-[1.125rem] text-[var(--text-primary)] transition-colors">
-              <span className="relative">
-                hello@joshuawilson.dev
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
-              </span>
-            </a>
-          </div>
+          <span className="text-[1rem] font-mono tracking-[0.2em] uppercase text-[var(--text-tertiary)]">
+            / Connect
+          </span>
+          <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold leading-tight text-[var(--text-primary)]">
+            Scaling Start-ups for Growth.
+          </h2>
+          <p className="text-[var(--text-secondary)] text-[1rem] leading-[1.6]">
+            I'm always open to discussing product architecture, creative engineering, or potential partnerships.
+          </p>
+          <a href="mailto:joshwilsonwill@gmail.com" className="inline-block mt-4 text-[1.25rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors underline decoration-[rgba(255,255,255,0.2)] underline-offset-8 hover:decoration-white">
+            joshwilsonwill@gmail.com
+          </a>
         </div>
       </div>
 

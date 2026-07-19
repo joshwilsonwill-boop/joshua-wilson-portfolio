@@ -8,6 +8,12 @@ import ScrollRevealText from "../components/ScrollRevealText";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// TODO: Replace with actual services
+// Suggested structure:
+// • Creative Technology / WebGL, Shaders, Spatial Experiences
+// • Full-Stack Engineering / Next.js, Infrastructure, APIs
+// • Product Consulting / Architecture, Direction, Strategy
+// • AI-Native Tools / Video, Automation, Intelligence
 const SERVICES = [
   {
     name: "Website Migration",

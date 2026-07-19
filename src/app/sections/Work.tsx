@@ -9,6 +9,7 @@ import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// TODO: Add live links to projects
 const PROJECTS = [
   {
     title: "Prometheus",
@@ -75,7 +76,7 @@ export default function Work() {
           <ScrollRevealText className="text-[1rem] text-[var(--text-secondary)]">Work that speaks for itself.</ScrollRevealText>
         </div>
         <div className="hidden md:block">
-          <a href="#" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+          <a href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
             <span className="relative">
               View All Work
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
@@ -89,7 +90,7 @@ export default function Work() {
         {PROJECTS.map((project, idx) => (
           <a 
             key={idx}
-            href="#"
+            href="/work"
             className="project-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
           >
             {/* Thumbnail */}
@@ -129,7 +130,7 @@ export default function Work() {
       </div>
 
       <div className="md:hidden mt-12 flex justify-center">
-        <a href="#" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+        <a href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
           <span className="relative">
             View All Work
             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />

@@ -8,6 +8,7 @@ import ScrollRevealText from "../components/ScrollRevealText";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// TODO: Replace with real testimonials
 const TESTIMONIALS = [
   {
     quote: "Joshua completely changed how I approach building systems. The attention to detail is not just beautiful, it's actually structured in a way that makes scaling so much easier.",

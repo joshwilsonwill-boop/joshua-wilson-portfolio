@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ImageParallax from "../components/ImageParallax";
 import ScrollRevealText from "../components/ScrollRevealText";
+import Typewriter from "../components/Typewriter";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -118,9 +119,19 @@ export default function Hero() {
             </div>
           </h1>
           
-          <ScrollRevealText className="text-[clamp(1rem,2.5vw,1.5rem)] font-normal text-[var(--text-secondary)] mb-8">
-            Engineering the Invisible
-          </ScrollRevealText>
+          <div className="h-[2.5rem] flex items-center mb-6">
+            <Typewriter 
+              phrases={[
+                "Engineering the Invisible.",
+                "Building systems that feel alive.",
+                "From WebGL to serverless.",
+                "Precision is the baseline.",
+                "I don't believe in templates.",
+                "Let's build something that shouldn't exist."
+              ]} 
+              className="text-[clamp(1rem,2.5vw,1.5rem)] font-normal text-[var(--text-secondary)]" 
+            />
+          </div>
           
           <ScrollRevealText className="text-[clamp(0.875rem,1.5vw,1.125rem)] text-[var(--text-tertiary)] max-w-[90%] lg:max-w-[48ch] mx-auto lg:mx-0 leading-[1.6]">
             I build systems that feel alive. From WebGL shaders to serverless infrastructure, every pixel and every packet is intentional.
@@ -136,7 +147,7 @@ export default function Hero() {
               />
             </div>
             <span className="uppercase text-[0.75rem] tracking-[0.15em] text-[var(--text-tertiary)] font-mono">
-              /CREATING SINCE 2020
+              /CREATING SINCE 2022
             </span>
           </div>
         </div>
@@ -151,7 +162,7 @@ export default function Hero() {
             />
           </div>
           <span className="uppercase text-[0.75rem] tracking-[0.15em] text-[var(--text-tertiary)] font-mono self-center pr-[clamp(1rem,4vw,6rem)]">
-            /CREATING SINCE 2020
+            /CREATING SINCE 2022
           </span>
         </div>
         

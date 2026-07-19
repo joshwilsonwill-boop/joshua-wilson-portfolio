@@ -30,7 +30,7 @@ export default function About() {
               Location
             </span>
             <span className="text-[0.875rem] text-[var(--text-secondary)]">
-              San Francisco, CA
+              Lagos, Nigeria
             </span>
           </div>
         </div>
@@ -70,6 +70,28 @@ export default function About() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Lifestyle Photos Section */}
+      <div className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] mt-32">
+        <div className="mb-12">
+          <h3 className="text-[clamp(1.5rem,3vw,2rem)] font-display font-bold text-[var(--text-primary)]">The Human Side.</h3>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* TODO: Add lifestyle photos */}
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="aspect-[4/5] rounded-[1rem] bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] overflow-hidden hover:scale-[1.02] hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500">
+              <div className="w-full h-full flex items-center justify-center text-[var(--text-tertiary)] text-sm font-mono uppercase">
+                Image {i}
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <p className="mt-6 text-[0.875rem] text-[var(--text-tertiary)] font-mono tracking-wider uppercase text-center md:text-left">
+          Lagos, Nigeria. Creating since 2022.
+        </p>
       </div>
     </section>
   );
