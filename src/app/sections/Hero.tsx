@@ -7,7 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ImageParallax from "../components/ImageParallax";
 import ScrollRevealText from "../components/ScrollRevealText";
 import Typewriter from "../components/Typewriter";
-import FloatingShapes from "../components/FloatingShapes";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,7 +71,12 @@ export default function Hero() {
       className="relative w-full min-h-[100dvh] flex flex-col justify-center overflow-hidden"
       id="hero"
     >
-      <FloatingShapes />
+      {/* Floating 2D Assets */}
+      <img src="/floating/sparkle.png" alt="" className="absolute top-[5%] lg:top-[10%] left-[2%] lg:left-[8%] w-10 md:w-16 lg:w-20 opacity-70 animate-float-1 z-[5] pointer-events-none will-change-transform" />
+      <img src="/floating/lightning.png" alt="" className="absolute top-[12%] right-[2%] lg:right-[8%] w-8 md:w-14 lg:w-16 opacity-70 animate-float-2 z-[5] pointer-events-none will-change-transform" />
+      <img src="/floating/sparkle.png" alt="" className="absolute bottom-[15%] right-[15%] lg:right-[25%] w-8 md:w-12 lg:w-16 opacity-60 animate-float-3 z-[5] pointer-events-none will-change-transform hidden md:block" />
+      <img src="/floating/lightning.png" alt="" className="absolute bottom-[20%] left-[10%] lg:left-[15%] w-8 md:w-12 lg:w-14 opacity-60 animate-float-1 z-[5] pointer-events-none will-change-transform hidden md:block" />
+      
       {/* Desktop Split Grid / Mobile Stack */}
       <div className="w-full max-w-[1600px] mx-auto px-[clamp(1.5rem,5vw,4rem)] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10 pt-32 pb-20 lg:py-0">
         
