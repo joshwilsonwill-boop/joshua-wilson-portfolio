@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import ScrollRevealText from "../components/ScrollRevealText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,29 +50,29 @@ export default function Stack() {
   return (
     <section
       ref={containerRef}
-      className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(6rem,15vh,12rem)]"
+      className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(8rem,20vh,16rem)]"
       id="stack"
     >
       <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-20">
         <div className="lg:w-[35%] lg:sticky lg:top-[20vh]">
           <h2 className="text-[clamp(2rem,5vw,4rem)] font-bold tracking-tight mb-4 skew-on-scroll">Current Loop</h2>
-          <ScrollRevealText className="text-[var(--text-secondary)] text-lg mb-6">The tools I reach for, repeatedly.</ScrollRevealText>
-          <ScrollRevealText className="text-[var(--text-tertiary)] text-[1rem] leading-[1.7]">
+          <p className="text-[var(--text-secondary)] text-lg mb-6 skew-on-scroll">The tools I reach for, repeatedly.</p>
+          <p className="text-[var(--text-tertiary)] text-[1rem] leading-[1.7] skew-on-scroll">
             My stack is not a list of buzzwords. It is a loop — a recurrent pattern of technologies I have mastered and combined in dozens of configurations. These are the tools I trust when the deadline is tight and the stakes are high.
-          </ScrollRevealText>
+          </p>
         </div>
 
         <div className="lg:w-[65%] grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
           {STACK.map((tech, index) => (
             <div
               key={index}
-              className="tech-card group flex flex-col gap-3 p-6 rounded-[0.75rem] border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-[rgba(255,255,255,0.12)]"
+              className="tech-card group flex flex-col gap-3 p-6 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[var(--bg-surface)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-[6px] hover:border-[var(--accent-cyan)] hover:shadow-[0_0_20px_rgba(0,212,255,0.1)] hover:bg-[var(--bg-elevated)]"
             >
-              <div className="w-8 h-8 rounded-[0.5rem] bg-[var(--chrome-dark)] flex items-center justify-center mb-2">
-                <div className="w-4 h-4 bg-[var(--text-tertiary)] rounded-sm transition-colors duration-300 group-hover:bg-[var(--chrome-light)]" />
+              <div className="w-8 h-8 rounded bg-[var(--chrome-dark)] flex items-center justify-center mb-2">
+                <div className="w-4 h-4 bg-[var(--text-tertiary)] rounded-sm group-hover:bg-[var(--accent-cyan)] transition-colors duration-300 shadow-[0_0_0_rgba(0,212,255,0)] group-hover:shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
               </div>
-              <h3 className="font-mono text-[var(--text-primary)] tracking-tight text-[clamp(1.25rem,2vw,1.5rem)]">{tech.name}</h3>
-              <p className="text-[clamp(0.875rem,1.2vw,1.125rem)] text-[var(--text-tertiary)] leading-[1.6]">{tech.desc}</p>
+              <h3 className="font-mono text-[var(--text-primary)] tracking-tight">{tech.name}</h3>
+              <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{tech.desc}</p>
             </div>
           ))}
         </div>

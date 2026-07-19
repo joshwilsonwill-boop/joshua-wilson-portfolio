@@ -1,85 +1,73 @@
 "use client";
 
 import { useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import ImageParallax from "../components/ImageParallax";
-
-gsap.registerPlugin(ScrollTrigger);
+import ScrollRevealText from "../components/ScrollRevealText";
+import { ArrowRight } from "lucide-react";
 
 export default function About() {
   const containerRef = useRef<HTMLElement>(null);
 
-  useGSAP(() => {
-    if (!containerRef.current) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-        toggleActions: "play none none none",
-      },
-    });
-
-    // Make container visible
-    gsap.set(containerRef.current, { autoAlpha: 1 });
-
-    // Image slides from left
-    tl.fromTo(
-      ".about-image-col",
-      { autoAlpha: 0, x: -100 },
-      { autoAlpha: 1, x: 0, duration: 1, ease: "power3.out" }
-    );
-
-    // Text paragraphs stagger from right
-    tl.fromTo(
-      ".bio-paragraph",
-      { autoAlpha: 0, x: 60 },
-      { autoAlpha: 1, x: 0, duration: 0.8, ease: "power3.out", stagger: 0.12 },
-      "-=0.6"
-    );
-  }, { scope: containerRef });
-
   return (
-    <section
+    <section 
+      id="about" 
       ref={containerRef}
-      className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(8rem,20vh,16rem)] invisible"
-      id="about"
+      className="relative w-full bg-[var(--bg-primary)] pt-12 pb-32"
     >
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-center">
-        {/* Image Column - 40% (5 cols) */}
-        <div className="about-image-col md:col-span-5 order-1">
-          <div className="relative group rounded-xl border border-[rgba(255,255,255,0.1)] overflow-hidden transition-transform duration-500 hover:scale-[1.02]">
+      <div className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        {/* Left - Image Context (40%) */}
+        <div className="md:col-span-5 order-2 md:order-1">
+          <div className="relative w-full aspect-[3/4] liquid-chrome-border rounded-[1rem] overflow-hidden">
             <ImageParallax
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
-              alt="Joshua Wilson Portrait - TODO: REPLACE"
-              containerClassName="aspect-[3/4] w-full"
+              src="https://images.unsplash.com/photo-1607743386760-88ac62b89b8a?q=80&w=1000&auto=format&fit=crop"
+              alt="Workspace context"
+              containerClassName="w-full h-full bg-[var(--bg-surface)]"
             />
-            {/* Chromatic Aberration overlay */}
-            <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 mix-blend-screen"
-                 style={{
-                   boxShadow: "inset 2px 0 0 0 rgba(255,0,0,0.5), inset -2px 0 0 0 rgba(0,255,255,0.5)"
-                 }}
-            />
+          </div>
+          <div className="mt-4 flex flex-col gap-1">
+            <span className="text-[0.75rem] font-mono tracking-widest text-[var(--text-tertiary)] uppercase">
+              Location
+            </span>
+            <span className="text-[0.875rem] text-[var(--text-secondary)]">
+              San Francisco, CA
+            </span>
           </div>
         </div>
 
-        {/* Text Column - 60% (7 cols) */}
-        <div className="md:col-span-7 order-2 flex flex-col gap-6">
-          <div className="space-y-6 text-[1rem] leading-[1.7] skew-on-scroll">
-            <p className="bio-paragraph text-[var(--text-primary)] font-medium text-lg">
-              I am an engineer and creative technologist building at the intersection of rigorous systems and spatial design. I do not believe in templates. I build products that feel like they have a pulse.
-            </p>
-            <p className="bio-paragraph text-[var(--text-secondary)]">
-              With a background in low-level systems and high-fidelity graphics, I operate across the entire stack. From writing custom WebGL shaders to architecting scalable serverless infrastructure, my goal is always to deliver experiences that are dense with value and devoid of friction.
-            </p>
-            <p className="bio-paragraph text-[var(--text-secondary)]">
-              When I'm not writing code, I'm studying industrial design, dissecting the aesthetics of fluid mechanics, or relentlessly iterating on internal tools. Precision is not an option. It is the baseline.
-            </p>
-            <p className="bio-paragraph text-[var(--text-secondary)]">
-              I work with founders who have impossible ideas and the conviction to see them through. If that sounds like you, we should talk.
-            </p>
+        {/* Right - Text Content (60%) */}
+        <div className="md:col-span-7 order-1 md:order-2 flex flex-col pt-0 md:pt-8">
+          <div className="mb-8">
+            <span className="text-[1rem] font-mono tracking-[0.2em] uppercase text-[var(--text-tertiary)] block mb-6">
+              / The Builder
+            </span>
+            <h2 className="text-[clamp(2rem,6vw,4rem)] font-display font-bold text-[var(--text-primary)] leading-[1.1] tracking-tight mb-8">
+              Hey!
+            </h2>
+          </div>
+          
+          <div className="flex flex-col gap-6 text-[clamp(1rem,1.5vw,1.25rem)] text-[var(--text-secondary)] leading-[1.6]">
+            <ScrollRevealText>
+              I am a creative technologist and full-stack engineer who specializes in the intersection of high-end design and robust systems engineering. Most developers can build functional apps; most designers can create beautiful comps. I do both, seamlessly.
+            </ScrollRevealText>
+            
+            <ScrollRevealText>
+              Over the last 6 years, I've architected platforms that scale to millions of users, designed interactions that win Awwwards, and helped stealth startups turn raw ideas into fundable products.
+            </ScrollRevealText>
+
+            <ScrollRevealText>
+              My philosophy is simple: write less code, build better systems, and never compromise on the user's sensory experience.
+            </ScrollRevealText>
+          </div>
+
+          <div className="mt-12">
+            <a href="#contact" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+              <span className="relative">
+                Let's Talk
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
+              </span>
+              <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </a>
           </div>
         </div>
       </div>
