@@ -10,6 +10,21 @@ import ScrollRevealText from "../components/ScrollRevealText";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const MORE_POSTS = [
+  {
+    date: "Sep 15, 2025",
+    title: "The Cost of Precision",
+    excerpt: "Most people optimize for speed. I optimize for inevitability. Here's why that's expensive and worth it.",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200",
+  },
+  {
+    date: "Aug 1, 2025",
+    title: "Why I Don't Believe in Templates",
+    excerpt: "Every product should feel like it has a pulse. Templates kill that pulse.",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
+  }
+];
+
 export default function PrometheusCaseStudy() {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -64,6 +79,15 @@ export default function PrometheusCaseStudy() {
           An AI-native video editing platform. 6DOF video matting, RL feedback loops, and bare-metal GPU-orchestrated rendering built for creators who refuse to compromise on quality.
         </p>
       </header>
+
+      {/* Hero Image */}
+      <section className="w-full aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden mb-32 border border-[rgba(255,255,255,0.05)] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+        <img 
+          src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?auto=format&fit=crop&q=80&w=1600" 
+          alt="Prometheus UI and Video Pipeline" 
+          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+        />
+      </section>
 
       {/* The Problem / Solution */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32">
@@ -136,6 +160,25 @@ export default function PrometheusCaseStudy() {
               <span className="text-[0.75rem] font-mono tracking-widest uppercase text-[var(--text-tertiary)]">{metric.label}</span>
               <span className="text-3xl font-display font-bold text-[var(--chrome-light)]">{metric.value}</span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* View other blogs */}
+      <section className="mb-32">
+        <h2 className="text-2xl font-bold font-display mb-8">View other blogs</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {MORE_POSTS.map((post, idx) => (
+            <a key={idx} href="/thoughts" className="group block bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-xl overflow-hidden hover:border-[rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1">
+              <div className="aspect-video overflow-hidden border-b border-[rgba(255,255,255,0.05)]">
+                <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+              </div>
+              <div className="p-6">
+                <span className="text-[0.75rem] font-mono text-[var(--text-tertiary)] block mb-3">{post.date}</span>
+                <h3 className="text-xl font-display font-bold mb-2 group-hover:text-[var(--chrome-light)] transition-colors text-[var(--text-primary)]">{post.title}</h3>
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{post.excerpt}</p>
+              </div>
+            </a>
           ))}
         </div>
       </section>
