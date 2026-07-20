@@ -132,6 +132,36 @@ export default function Hero() {
           className="w-12 md:w-14 lg:w-16 opacity-70 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
         />
       </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -18, 0], rotate: [0, -8, 0] }}
+        transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
+        className="absolute top-[40%] lg:top-[30%] right-[15%] lg:right-[35%] z-[20] hidden md:block"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/sparkle.png" 
+          alt="Sparkle" 
+          className="w-10 md:w-12 lg:w-16 opacity-60 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -22, 0], rotate: [0, 6, 0] }}
+        transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+        className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20]"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/lightning.png" 
+          alt="Lightning" 
+          className="w-10 md:w-12 lg:w-14 opacity-60 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
       
       {/* Desktop Split Grid / Mobile Stack */}
       <div className="w-full max-w-[1600px] mx-auto px-[clamp(1.5rem,5vw,4rem)] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10 pt-32 pb-20 lg:py-0">

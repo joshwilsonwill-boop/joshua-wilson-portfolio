@@ -8,6 +8,7 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger);
 
 import { usePathname, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const LINKS = [
   { label: "Home", href: "#hero" },
@@ -59,6 +60,37 @@ export default function Footer() {
   return (
     <footer ref={containerRef} className="relative w-full overflow-hidden bg-[var(--bg-primary)] pt-32 pb-8 flex flex-col items-center">
       
+      {/* Floating 2D Assets */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+        className="absolute top-[10%] left-[10%] lg:left-[15%] z-[5]"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/sparkle.png" 
+          alt="Sparkle" 
+          className="w-12 md:w-16 lg:w-20 opacity-40 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, -20, 0], rotate: [0, -5, 0] }}
+        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+        className="absolute bottom-[40%] right-[10%] lg:right-[15%] z-[5]"
+      >
+        <motion.img 
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          src="/floating/lightning.png" 
+          alt="Lightning" 
+          className="w-10 md:w-12 lg:w-16 opacity-40 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+        />
+      </motion.div>
+
       <div className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-32 z-10">
         <div className="footer-element">
           <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-[var(--text-primary)] max-w-[15ch] leading-tight">
