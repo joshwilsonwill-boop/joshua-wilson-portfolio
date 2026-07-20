@@ -74,92 +74,92 @@ export default function Hero() {
     >
       {/* Floating 2D Assets - Now Draggable and larger on mobile */}
       <motion.div
-        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-        className="absolute top-[10%] lg:top-[15%] left-[5%] lg:left-[8%] z-[20]"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute top-[10%] lg:top-[15%] left-[5%] lg:left-[8%] z-[20] cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
           src="/floating/sparkle.png" 
           alt="Sparkle" 
-          className="w-16 md:w-20 lg:w-24 opacity-80 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
-        transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-        className="absolute top-[15%] lg:top-[12%] right-[5%] lg:right-[8%] z-[20]"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute top-[15%] lg:top-[12%] right-[5%] lg:right-[8%] z-[20] cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
           src="/floating/lightning.png" 
           alt="Lightning" 
-          className="w-14 md:w-16 lg:w-20 opacity-80 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, -25, 0], rotate: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        className="absolute bottom-[20%] lg:bottom-[15%] right-[10%] lg:right-[25%] z-[20] hidden md:block"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute bottom-[20%] lg:bottom-[15%] right-[10%] lg:right-[25%] z-[20] hidden md:block cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -25, 0], rotate: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
           src="/floating/sparkle.png" 
           alt="Sparkle" 
-          className="w-14 md:w-16 lg:w-20 opacity-70 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
-        className="absolute bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%] z-[20] hidden md:block"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%] z-[20] hidden md:block cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
           src="/floating/lightning.png" 
           alt="Lightning" 
-          className="w-12 md:w-14 lg:w-16 opacity-70 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-12 md:w-14 lg:w-16 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, -18, 0], rotate: [0, -8, 0] }}
-        transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
-        className="absolute top-[40%] lg:top-[30%] right-[15%] lg:right-[35%] z-[20] hidden md:block"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute top-[40%] lg:top-[30%] right-[15%] lg:right-[35%] z-[20] hidden md:block cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -18, 0], rotate: [0, -8, 0] }}
+          transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
           src="/floating/sparkle.png" 
           alt="Sparkle" 
-          className="w-10 md:w-12 lg:w-16 opacity-60 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, -22, 0], rotate: [0, 6, 0] }}
-        transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-        className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20]"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20] cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -22, 0], rotate: [0, 6, 0] }}
+          transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
           src="/floating/lightning.png" 
           alt="Lightning" 
-          className="w-10 md:w-12 lg:w-14 opacity-60 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
       

@@ -62,32 +62,32 @@ export default function Footer() {
       
       {/* Floating 2D Assets */}
       <motion.div
-        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-        className="absolute top-[10%] left-[10%] lg:left-[15%] z-[5]"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute top-[10%] left-[10%] lg:left-[15%] z-[20] cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
           src="/floating/sparkle.png" 
           alt="Sparkle" 
-          className="w-12 md:w-16 lg:w-20 opacity-40 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
       <motion.div
-        animate={{ y: [0, -20, 0], rotate: [0, -5, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        className="absolute bottom-[40%] right-[10%] lg:right-[15%] z-[5]"
+        drag 
+        dragConstraints={containerRef}
+        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+        className="absolute bottom-[40%] right-[10%] lg:right-[15%] z-[20] cursor-grab"
       >
         <motion.img 
-          drag 
-          dragConstraints={containerRef}
-          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          animate={{ y: [0, -20, 0], rotate: [0, -5, 0] }}
+          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
           src="/floating/lightning.png" 
           alt="Lightning" 
-          className="w-10 md:w-12 lg:w-16 opacity-40 cursor-grab drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform" 
+          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
         />
       </motion.div>
 
