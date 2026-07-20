@@ -88,8 +88,8 @@ export default function Contact() {
               target="_blank" rel="noopener noreferrer"
               className="flex items-center justify-center w-6 h-6 hover:text-[var(--text-primary)] hover:scale-110 transition-all duration-300" aria-label="Linktree"
             >
-              <svg className="w-full h-full" viewBox="0 0 256 256" fill="currentColor">
-                <path d="M136 160v72a8 8 0 0 1-16 0v-72a8 8 0 0 1 16 0m72-64h-60.69l42.35-42.34a8 8 0 0 0-11.32-11.32L136 84.69V24a8 8 0 0 0-16 0v60.69L77.66 42.34a8 8 0 0 0-11.32 11.32L108.69 96H48a8 8 0 0 0 0 16h60.69l-42.35 42.34a8 8 0 0 0 11.32 11.32L120 123.31V232a8 8 0 0 0 16 0v-108.69l58.34 58.35a8 8 0 0 0 11.32-11.32L148.69 112H208a8 8 0 0 0 0-16" />
+              <svg className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M13.736 12.323l-4.362-7.88a1.235 1.235 0 0 0-2.158 0L2.85 12.323c-.378.682.115 1.52.89 1.52h3.454v6.864a1.034 1.034 0 0 0 1.033 1.034h3.546a1.034 1.034 0 0 0 1.033-1.034v-6.864h3.454c.775 0 1.268-.838.89-1.52zM21.15 12.323l-4.362-7.88a1.235 1.235 0 0 0-2.158 0l-4.366 7.88c-.378.682.115 1.52.89 1.52h3.454v6.864a1.034 1.034 0 0 0 1.033 1.034h3.546a1.034 1.034 0 0 0 1.033-1.034v-6.864h3.454c.775 0 1.268-.838.89-1.52z" />
               </svg>
             </a>
           </div>
