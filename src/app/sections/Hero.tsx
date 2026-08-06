@@ -107,52 +107,7 @@ export default function Hero() {
         drag 
         dragConstraints={containerRef}
         whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute bottom-[20%] lg:bottom-[15%] right-[10%] lg:right-[25%] z-[20] hidden md:block cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -25, 0], rotate: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-          src="/floating/sparkle.png" 
-          alt="Sparkle" 
-          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
-
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%] z-[20] hidden md:block cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
-          src="/floating/lightning.png" 
-          alt="Lightning" 
-          className="w-12 md:w-14 lg:w-16 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
-
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute top-[40%] lg:top-[30%] right-[15%] lg:right-[35%] z-[20] hidden md:block cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -18, 0], rotate: [0, -8, 0] }}
-          transition={{ repeat: Infinity, duration: 6.5, ease: "easeInOut" }}
-          src="/floating/sparkle.png" 
-          alt="Sparkle" 
-          className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
-
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20] cursor-grab"
+        className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20] hidden md:block cursor-grab"
       >
         <motion.img 
           animate={{ y: [0, -22, 0], rotate: [0, 6, 0] }}
