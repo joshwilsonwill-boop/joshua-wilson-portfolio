@@ -10,6 +10,7 @@ import Footer from "../sections/Footer";
 import FilterBar, { Platform } from "../components/FilterBar";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,15 +24,13 @@ interface Post {
   username: string;
 }
 
-// TODO: Replace with real post URLs and content
-// Future enhancement: Add API integration to fetch these automatically
 const POSTS: Post[] = [
   {
     id: "1",
     platform: "X (Twitter)",
     date: "July 12, 2026",
     content: "Building high-performance animations in React requires understanding the lifecycle. If you're not cleaning up your GSAP contexts on unmount, you're leaking memory. It's that simple.",
-    url: "https://x.com/joshwilson_will/status/placeholder",
+    url: "https://x.com/joshwilson_will",
     username: "@joshwilson_will",
   },
   {
@@ -39,7 +38,7 @@ const POSTS: Post[] = [
     platform: "Instagram",
     date: "June 28, 2026",
     content: "Exploring spatial depth with Three.js. Liquid chrome studies.",
-    url: "https://instagram.com/p/placeholder",
+    url: "https://instagram.com/i_m_joshwilson",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop",
     username: "@i_m_joshwilson",
   },
@@ -48,7 +47,7 @@ const POSTS: Post[] = [
     platform: "Telegram",
     date: "June 15, 2026",
     content: "Just dropped the new system architecture diagram in the chat. We're moving from a monolithic structure to a distributed set of edge functions.",
-    url: "https://t.me/josh_will/placeholder",
+    url: "https://t.me/josh_will",
     username: "Joshua",
   },
   {
@@ -56,7 +55,7 @@ const POSTS: Post[] = [
     platform: "X (Twitter)",
     date: "May 20, 2026",
     content: "Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs. Still the most accurate definition.",
-    url: "https://x.com/gadflyrebel/status/placeholder",
+    url: "https://x.com/gadflyrebel",
     username: "@gadflyrebel",
   },
 ];
@@ -161,7 +160,7 @@ export default function ThoughtsPage() {
               
               {post.image && (
                 <div className="w-full aspect-[4/3] rounded-lg overflow-hidden mb-4 border border-[rgba(255,255,255,0.04)]">
-                  <img src={post.image} alt="Post attachment" className="w-full h-full object-cover" />
+                <Image src={post.image} alt="Post attachment" width={800} height={600} className="w-full h-full object-cover" />
                 </div>
               )}
               
@@ -170,7 +169,7 @@ export default function ThoughtsPage() {
               </p>
               
               <div className="flex items-center text-[0.75rem] text-[var(--chrome-mid)] font-medium gap-1 group-hover:text-[var(--text-primary)] transition-colors">
-                View original post
+                Visit account
                 <ExternalLink size={12} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
               </div>
             </a>

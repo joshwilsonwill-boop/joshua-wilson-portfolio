@@ -10,12 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 interface TextRevealProps {
   text: string;
   className?: string;
-  as?: React.ElementType;
 }
 
-export default function TextReveal({ text, className = "", as: Component = "p" }: TextRevealProps) {
-  const containerRef = useRef<HTMLElement>(null);
-  const Tag = Component as any;
+export default function TextReveal({ text, className = "" }: TextRevealProps) {
+  const containerRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -45,7 +43,7 @@ export default function TextReveal({ text, className = "", as: Component = "p" }
   const words = text.split(" ");
 
   return (
-    <Tag ref={containerRef} className={className}>
+    <p ref={containerRef} className={className}>
       {words.map((word, i) => (
         <span key={i} className="inline-block whitespace-nowrap mr-[0.25em]">
           {word.split("").map((char, j) => (
@@ -55,6 +53,6 @@ export default function TextReveal({ text, className = "", as: Component = "p" }
           ))}
         </span>
       ))}
-    </Tag>
+    </p>
   );
 }

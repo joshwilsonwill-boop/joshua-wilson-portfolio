@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,10 +45,13 @@ export default function ImageParallax({ src, alt, className = "", containerClass
       ref={containerRef}
       className={`relative overflow-hidden rounded-xl border border-[rgba(255,255,255,0.1)] group ${containerClassName}`}
     >
-      <img
+      <Image
         ref={imageRef}
         src={src}
         alt={alt}
+        width={1000}
+        height={1300}
+        loading="lazy"
         className={`w-full h-[130%] object-cover absolute top-[-15%] left-0 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02] ${className}`}
       />
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef, useMemo, useSyncExternalStore } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useMousePosition } from "../hooks/useMousePosition";
@@ -142,13 +142,24 @@ const ChromePlane = ({ isMobile }: { isMobile: boolean }) => {
 };
 
 export default function LiquidChrome() {
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    setReducedMotion(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
-    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
-  }, []);
+  const reducedMotion = useSyncExternalStore(
+    (onChange) => {
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false
+  );
+  const isMobile = useSyncExternalStore(
+    (onChange) => {
+      const mediaQuery = window.matchMedia("(max-width: 768px)");
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia("(max-width: 768px)").matches,
+    () => false
+  );
 
   if (reducedMotion) {
     return (

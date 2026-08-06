@@ -6,10 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ScrollRevealText from "../components/ScrollRevealText";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// TODO: Add live links to projects
 const PROJECTS = [
   {
     title: "Prometheus",
@@ -77,28 +78,30 @@ export default function Work() {
           <ScrollRevealText className="text-[1rem] text-[var(--text-secondary)]">Work that speaks for itself.</ScrollRevealText>
         </div>
         <div className="hidden md:block">
-          <a href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+          <Link href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
             <span className="relative">
               View All Work
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
             </span>
             <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         {PROJECTS.map((project, idx) => (
-          <a 
+          <Link
             key={idx}
             href={project.link || "/work"}
             className="project-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
           >
             {/* Thumbnail */}
             <div className="w-full aspect-video relative overflow-hidden bg-[var(--bg-surface)] border-b border-[rgba(255,255,255,0.04)]">
-              <img 
+              <Image
                 src={project.image} 
                 alt={project.title}
+                width={1200}
+                height={675}
                 className="w-full h-full object-cover grayscale transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0"
                 loading="lazy"
               />
@@ -126,18 +129,18 @@ export default function Work() {
                 ))}
               </div>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 
       <div className="md:hidden mt-12 flex justify-center">
-        <a href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+        <Link href="/work" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
           <span className="relative">
             View All Work
             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
           </span>
           <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -4,9 +4,12 @@ import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 const LINKS = [
   { label: "About Me", href: "#about" },
+  { label: "Stack", href: "#stack" },
   { label: "Services", href: "#services" },
   { label: "Projects", href: "#work" },
   { label: "Thoughts", href: "#thoughts" },
@@ -15,6 +18,7 @@ const LINKS = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
   const containerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -104,8 +108,8 @@ export default function Navigation() {
         <ul className="flex flex-col gap-1">
           {LINKS.map((link) => (
             <li key={link.label} className="nav-link-item invisible">
-              <a 
-                href={link.href}
+              <Link
+                href={pathname === "/" ? link.href : `/${link.href}`}
                 onClick={() => setIsOpen(false)}
                 className="group flex items-center px-4 py-3 rounded-xl hover:bg-[rgba(255,255,255,0.03)] transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               >
@@ -113,7 +117,7 @@ export default function Navigation() {
                   {link.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[var(--chrome-light)] to-[var(--chrome-dark)] transition-all duration-300 group-hover:w-full" />
                 </span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

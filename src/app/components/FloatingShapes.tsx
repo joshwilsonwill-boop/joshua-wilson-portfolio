@@ -1,12 +1,14 @@
 "use client";
 
-import { useRef, useMemo, useState, useEffect } from "react";
+import { useRef, useMemo, useSyncExternalStore } from "react";
 import { Canvas } from "@react-three/fiber";
 import * as THREE from "three";
 import { Float, Environment } from "@react-three/drei";
 
 // --- 1. Sparkle (4-point star) ---
-function Sparkle(props: any) {
+type FloatProps = React.ComponentProps<typeof Float>;
+
+function Sparkle(props: FloatProps) {
   const group = useRef<THREE.Group>(null);
   
   return (
@@ -38,7 +40,7 @@ function Sparkle(props: any) {
 }
 
 // --- 2. Lightning Bolt ---
-function Lightning(props: any) {
+function Lightning(props: FloatProps) {
   const meshRef = useRef<THREE.Mesh>(null);
   
   const geometry = useMemo(() => {
@@ -84,7 +86,7 @@ function Lightning(props: any) {
 }
 
 // --- 3. AI Neural Node ---
-function AINode(props: any) {
+function AINode(props: FloatProps) {
   return (
     <Float speed={2} rotationIntensity={1} floatIntensity={1.2} {...props}>
       <group>
@@ -115,15 +117,15 @@ function AINode(props: any) {
 }
 
 export default function FloatingShapes() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 768px)");
-    setIsMobile(mediaQuery.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
+  const isMobile = useSyncExternalStore(
+    (onChange) => {
+      const mediaQuery = window.matchMedia("(max-width: 768px)");
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia("(max-width: 768px)").matches,
+    () => false
+  );
 
   return (
     <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">

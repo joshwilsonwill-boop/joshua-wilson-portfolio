@@ -7,7 +7,8 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const LINKS = [
@@ -20,21 +21,7 @@ const LINKS = [
 
 export default function Footer() {
   const containerRef = useRef<HTMLElement>(null);
-  const router = useRouter();
   const pathname = usePathname();
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    if (pathname === '/') {
-      const el = document.querySelector(href);
-      if (el) {
-        const y = el.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-      }
-    } else {
-      router.push(`/${href}`);
-    }
-  };
 
   useGSAP(() => {
     if (!containerRef.current) return;
@@ -101,14 +88,13 @@ export default function Footer() {
         <div className="footer-element flex flex-col gap-8">
           <div className="flex flex-wrap gap-3">
             {LINKS.map((link) => (
-              <a 
+              <Link
                 key={link.label}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                href={pathname === "/" ? link.href : `/${link.href}`}
                 className="px-4 py-2 rounded-full border border-[rgba(255,255,255,0.08)] text-[0.875rem] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[rgba(255,255,255,0.2)] transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
           <span className="text-[1rem] font-mono tracking-[0.2em] uppercase text-[var(--text-tertiary)]">
@@ -118,7 +104,7 @@ export default function Footer() {
             Scaling Start-ups for Growth.
           </h2>
           <p className="text-[var(--text-secondary)] text-[1rem] leading-[1.6]">
-            I'm always open to discussing product architecture, creative engineering, or potential partnerships.
+            I&apos;m always open to discussing product architecture, creative engineering, or potential partnerships.
           </p>
           <a href="mailto:joshwilsonwill@gmail.com" className="inline-block mt-4 text-[1.25rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors underline decoration-[rgba(255,255,255,0.2)] underline-offset-8 hover:decoration-white">
             joshwilsonwill@gmail.com

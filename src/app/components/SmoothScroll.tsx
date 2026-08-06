@@ -5,11 +5,21 @@ import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { usePathname } from "next/navigation";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const refreshFrame = window.requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+
+    return () => window.cancelAnimationFrame(refreshFrame);
+  }, [pathname]);
 
   useGSAP(() => {
     const isReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -18,6 +28,8 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     const lenis = new Lenis({
       lerp: 0.08, // Heavier, more deliberate feel
       smoothWheel: true,
+      anchors: true,
+      stopInertiaOnNavigate: true,
     });
 
     // Velocity-based skew effect on elements with .skew-on-scroll class
@@ -37,16 +49,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       });
     });
 
-    gsap.ticker.add((time) => {
+    const tickerCallback = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+
+    gsap.ticker.add(tickerCallback);
 
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      gsap.ticker.remove((time) => {
-        lenis.raf(time * 1000);
-      });
+      gsap.ticker.remove(tickerCallback);
       lenis.destroy();
     };
   }, { scope: containerRef });

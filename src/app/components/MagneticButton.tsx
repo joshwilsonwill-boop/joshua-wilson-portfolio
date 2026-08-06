@@ -1,8 +1,18 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import { motion, useMotionValue, useSpring, HTMLMotionProps } from "framer-motion";
-import { useMousePosition } from "../hooks/useMousePosition";
+
+const subscribeToMobileMediaQuery = (onChange: () => void) => {
+  if (typeof window === "undefined") return () => undefined;
+
+  const mediaQuery = window.matchMedia("(max-width: 768px)");
+  mediaQuery.addEventListener("change", onChange);
+  return () => mediaQuery.removeEventListener("change", onChange);
+};
+
+const getMobileMediaQuerySnapshot = () =>
+  typeof window !== "undefined" && window.matchMedia("(max-width: 768px)").matches;
 
 interface MagneticButtonProps extends HTMLMotionProps<"button"> {
   children: React.ReactNode;
@@ -12,14 +22,16 @@ interface MagneticButtonProps extends HTMLMotionProps<"button"> {
 export default function MagneticButton({ children, className = "", onClick, ...props }: MagneticButtonProps) {
   const ref = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useSyncExternalStore(
+    subscribeToMobileMediaQuery,
+    getMobileMediaQuerySnapshot,
+    () => false
+  );
   
   // Real cursor coordinates (not normalized)
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    setIsMobile(window.matchMedia("(max-width: 768px)").matches);
-    
     const updateCursor = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
     };

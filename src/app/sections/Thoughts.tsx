@@ -6,11 +6,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ScrollRevealText from "../components/ScrollRevealText";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// TODO: Replace with real posts
-// Sample post placeholders
 const POSTS = [
   {
     date: "Oct 30, 2025",
@@ -80,19 +80,19 @@ export default function Thoughts() {
           </ScrollRevealText>
         </div>
         <div className="hidden md:block">
-          <a href="/thoughts" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+          <Link href="/thoughts" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
             <span className="relative">
               View All Posts
               <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
             </span>
             <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          </Link>
         </div>
       </div>
 
       <div className="flex flex-col border-t border-[rgba(255,255,255,0.04)]">
         {POSTS.map((post, idx) => (
-          <a 
+          <Link
             key={idx}
             href="/thoughts"
             className="post-item group py-8 lg:py-12 border-b border-[rgba(255,255,255,0.04)] grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-[rgba(255,255,255,0.01)] transition-colors px-4 -mx-4 rounded-xl"
@@ -113,25 +113,27 @@ export default function Thoughts() {
             </div>
             
             <div className="md:col-span-3 w-full md:w-3/4 ml-auto aspect-video rounded-lg overflow-hidden border border-[rgba(255,255,255,0.04)] bg-[var(--bg-surface)] mt-4 md:mt-0">
-              <img 
+              <Image
                 src={post.image} 
                 alt={post.title}
+                width={1200}
+                height={675}
                 className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105"
                 loading="lazy"
               />
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 
       <div className="md:hidden mt-12 flex justify-center">
-        <a href="/thoughts" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+        <Link href="/thoughts" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
           <span className="relative">
             View All Posts
             <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
           </span>
           <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-        </a>
+        </Link>
       </div>
     </section>
   );

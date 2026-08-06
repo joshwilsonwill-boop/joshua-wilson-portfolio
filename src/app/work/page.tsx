@@ -9,10 +9,10 @@ import ScrollRevealText from "../components/ScrollRevealText";
 import Footer from "../sections/Footer";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// TODO: Add live links to projects
 const PROJECTS = [
   {
     title: "Prometheus",
@@ -27,6 +27,7 @@ const PROJECTS = [
     desc: "A personal knowledge management system built on Notion, custom Python pipelines, and graph databases. It maps what I don't know so I can navigate what I do.",
     tags: ["React", "Python", "Neo4j"],
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200",
+    link: "/work#cartography",
   },
   {
     title: "Portfolio v1",
@@ -34,6 +35,7 @@ const PROJECTS = [
     desc: "This very site — engineered for zero friction, maximum impact. Liquid chrome shader, scroll-driven animations, and a build pipeline that deploys in seconds.",
     tags: ["Next.js", "GSAP", "Three.js"],
     image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=1200",
+    link: "/#work",
   },
   {
     title: "More coming soon.",
@@ -41,6 +43,7 @@ const PROJECTS = [
     desc: "I am always building. More case studies and open source contributions will be published here as they ship.",
     tags: ["TBD"],
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
+    link: "/work#future",
   },
 ];
 
@@ -113,7 +116,7 @@ export default function WorkPage() {
         
         <div className="work-hero-text max-w-[600px]">
           <ScrollRevealText className="text-[clamp(1rem,1.5vw,1.25rem)] text-[var(--text-secondary)] leading-[1.6]">
-            A few things I've built. Some public, some stealth, all deliberate.
+            A few things I&apos;ve built. Some public, some stealth, all deliberate.
           </ScrollRevealText>
         </div>
       </section>
@@ -121,16 +124,19 @@ export default function WorkPage() {
       <section className="w-full max-w-[1600px] mx-auto px-[clamp(1.5rem,5vw,4rem)] pb-[clamp(6rem,15vh,12rem)]">
         <div className="work-grid grid grid-cols-1 md:grid-cols-2 gap-[clamp(2rem,4vw,3rem)] masonry-style-grid">
           {PROJECTS.map((project, idx) => (
-            <a 
+            <Link
               key={idx}
-              href="#"
+              href={project.link || "/work"}
+              id={project.title === "Cartography of Ignorance" ? "cartography" : project.title === "More coming soon." ? "future" : undefined}
               className={`work-grid-card group relative w-full rounded-[1rem] overflow-hidden bg-[var(--bg-surface)] aspect-[4/3] md:aspect-auto ${idx % 2 !== 0 ? 'md:mt-24 md:aspect-[3/4]' : 'md:aspect-[4/3]'}`}
             >
               {/* Image Container with Parallax wrapper */}
               <div className="absolute inset-[-10%] w-[120%] h-[120%]">
-                <img 
+                <Image
                   src={project.image} 
                   alt={project.title}
+                  width={1200}
+                  height={900}
                   className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   loading="lazy"
                 />
@@ -157,7 +163,7 @@ export default function WorkPage() {
                   ))}
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

@@ -30,6 +30,20 @@
   --text-tertiary: #6e6e73;
 }
 
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not(.lenis) {
+    scroll-behavior: smooth;
+  }
+}
+
+html.lenis {
+  scroll-behavior: auto;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);

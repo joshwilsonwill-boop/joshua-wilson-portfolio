@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, Activity, Cpu, Network } from "lucide-react";
 import ScrollRevealText from "../components/ScrollRevealText";
 
@@ -82,9 +83,11 @@ export default function PrometheusCaseStudy() {
 
       {/* Hero Image */}
       <section className="w-full aspect-video md:aspect-[21/9] rounded-2xl overflow-hidden mb-32 border border-[rgba(255,255,255,0.05)] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-        <img 
+                <Image
           src="https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?auto=format&fit=crop&q=80&w=1600" 
           alt="Prometheus UI and Video Pipeline" 
+          width={1600}
+          height={900}
           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
         />
       </section>
@@ -101,7 +104,7 @@ export default function PrometheusCaseStudy() {
         <section>
           <h2 className="text-sm font-mono text-[var(--chrome-light)] uppercase tracking-widest mb-6 border-b border-[rgba(255,255,255,0.1)] pb-2">The Solution</h2>
           <ScrollRevealText className="text-lg leading-relaxed text-[var(--text-secondary)]">
-            Prometheus bypasses standard limits by orchestrating dedicated A100 GPU clusters via WebRTC and Rust microservices. The result is real-time 4K rendering and frame-perfect AI depth mapping that runs natively at 60fps in the browser. I don't write code. I write inevitability.
+            Prometheus bypasses standard limits by orchestrating dedicated A100 GPU clusters via WebRTC and Rust microservices. The result is real-time 4K rendering and frame-perfect AI depth mapping that runs natively at 60fps in the browser. I don&apos;t write code. I write inevitability.
           </ScrollRevealText>
         </section>
       </div>
@@ -169,16 +172,16 @@ export default function PrometheusCaseStudy() {
         <h2 className="text-2xl font-bold font-display mb-8">View other blogs</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {MORE_POSTS.map((post, idx) => (
-            <a key={idx} href="/thoughts" className="group block bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-xl overflow-hidden hover:border-[rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1">
+            <Link key={idx} href="/thoughts" className="group block bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-xl overflow-hidden hover:border-[rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1">
               <div className="aspect-video overflow-hidden border-b border-[rgba(255,255,255,0.05)]">
-                <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                <Image src={post.image} alt={post.title} width={1200} height={675} className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
               </div>
               <div className="p-6">
                 <span className="text-[0.75rem] font-mono text-[var(--text-tertiary)] block mb-3">{post.date}</span>
                 <h3 className="text-xl font-display font-bold mb-2 group-hover:text-[var(--chrome-light)] transition-colors text-[var(--text-primary)]">{post.title}</h3>
                 <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{post.excerpt}</p>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </section>

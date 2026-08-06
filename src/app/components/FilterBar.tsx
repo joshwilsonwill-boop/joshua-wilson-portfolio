@@ -1,7 +1,5 @@
 "use client";
 
-import { useState } from "react";
-
 export type Platform = "All" | "X (Twitter)" | "Instagram" | "Telegram";
 
 interface FilterBarProps {

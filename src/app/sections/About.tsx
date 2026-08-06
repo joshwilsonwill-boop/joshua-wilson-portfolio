@@ -53,18 +53,18 @@ export default function About() {
             </ScrollRevealText>
             
             <ScrollRevealText>
-              Over the last 6 years, I've architected platforms that scale to millions of users, designed interactions that win Awwwards, and helped stealth startups turn raw ideas into fundable products.
+              Over the last 6 years, I&apos;ve architected platforms that scale to millions of users, designed interactions that win Awwwards, and helped stealth startups turn raw ideas into fundable products.
             </ScrollRevealText>
 
             <ScrollRevealText>
-              My philosophy is simple: write less code, build better systems, and never compromise on the user's sensory experience.
+              My philosophy is simple: write less code, build better systems, and never compromise on the user&apos;s sensory experience.
             </ScrollRevealText>
           </div>
 
           <div className="mt-12">
             <a href="#contact" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
               <span className="relative">
-                Let's Talk
+                Let&apos;s Talk
                 <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
               </span>
               <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />

@@ -187,13 +187,31 @@ export default function Hero() {
                 "Precision is not an option. It's the baseline.",
                 "I don't believe in templates.",
                 "Let's build something that shouldn't exist.",
-                "Your code is bad and you should feel bad.",
+                "I turn good conversations into things people can use.",
                 "I architect. You execute. We ship.",
                 "If it compiles on the first try, you're not trying hard enough.",
-                "I don't do meetings. I do deployments.",
+                "I make the hard parts worth noticing.",
                 "My stack is not a list. It's a loop.",
-                "Break things. Fix them. Break them better."
-              ]} 
+                "Break things. Fix them. Break them better.",
+                "Zero friction. Maximum impact.",
+                "Systems that outlive their founders.",
+                "I make the complicated feel calm.",
+                "I turn wild ideas into dependable experiences.",
+                "A sharp idea deserves thoughtful execution.",
+                "I build for the moment when everything clicks.",
+                "I care about the details people feel before they see.",
+                "Useful can still feel unforgettable.",
+                "I bring taste to the parts no one talks about.",
+                "I make ambitious things feel obvious in hindsight.",
+                "I work where craft meets consequence.",
+                "Every interaction should earn its place.",
+                "I build things with a pulse and a purpose.",
+                "Clarity is a creative advantage.",
+                "The best work feels inevitable, never accidental.",
+                "I make room for the idea to become itself.",
+                "I turn first impressions into lasting ones.",
+                "I build the kind of work people remember."
+              ]}
               className="font-bold text-[clamp(1rem,2.5vw,1.5rem)] text-[#a1a1a6]" 
             />
           </div>

@@ -43,11 +43,11 @@ export default function Contact() {
         {/* Left Column - Header & Socials */}
         <div className="lg:w-5/12 flex flex-col">
           <h2 className="contact-animate font-display text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-tight mb-6 text-[var(--text-primary)] leading-none">
-            Let's talk.
+            Let&apos;s talk.
           </h2>
           
           <ScrollRevealText className="text-[1rem] text-[var(--text-secondary)] leading-[1.6] mb-12 max-w-[40ch]">
-            Have a project or need help? Fill out the form, and I'll get back to you soon.
+            Have a project or need help? Fill out the form, and I&apos;ll get back to you soon.
           </ScrollRevealText>
 
           <div className="contact-animate flex flex-wrap gap-6 text-[var(--text-tertiary)] items-center">
@@ -100,7 +100,7 @@ export default function Contact() {
           {state.succeeded ? (
             <div className="contact-animate flex flex-col items-center justify-center h-full min-h-[300px] border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] rounded-[0.75rem] p-8 text-center">
               <h3 className="font-display text-[2rem] font-bold tracking-tight mb-2 text-[var(--text-primary)]">Message Received</h3>
-              <p className="text-[var(--text-secondary)]">Thanks for reaching out! I'll get back to you shortly.</p>
+              <p className="text-[var(--text-secondary)]">Thanks for reaching out. I&apos;ll get back to you shortly.</p>
             </div>
           ) : (
             <form 
