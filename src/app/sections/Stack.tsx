@@ -112,13 +112,36 @@ export default function Stack() {
         </div>
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center gap-2 text-[0.75rem] font-mono uppercase tracking-wider text-[var(--text-tertiary)]">
-        <span className="mr-2">Also use:</span>
-        {SECONDARY_STACK.map((tech) => (
-          <span key={tech.name} className="rounded-full border border-[rgba(255,255,255,0.08)] px-3 py-1.5">
-            {tech.name}
-          </span>
-        ))}
+      <div className="mt-20 border-y border-[rgba(255,255,255,0.08)]">
+        <div className="grid lg:grid-cols-[minmax(12rem,0.7fr)_minmax(0,2fr)] lg:divide-x lg:divide-[rgba(255,255,255,0.08)]">
+          <div className="flex flex-col justify-between gap-8 py-8 lg:pr-10 lg:py-10">
+            <div>
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-[var(--chrome-mid)]">02 / Also use</p>
+              <p className="mt-4 max-w-[17rem] text-[clamp(1.15rem,2vw,1.5rem)] leading-[1.2] text-[var(--text-primary)]">Supporting systems for when the constraint changes.</p>
+            </div>
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[var(--text-tertiary)]">{SECONDARY_STACK.length} tools in rotation</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 lg:pl-10">
+            {SECONDARY_STACK.map((tech, index) => (
+              <div
+                key={tech.name}
+                tabIndex={0}
+                className={`group relative border-t border-[rgba(255,255,255,0.08)] py-5 outline-none transition-colors duration-500 sm:px-4 ${index === 0 ? "border-t-0" : ""} ${index < 2 ? "sm:border-t-0" : ""} ${index < 3 ? "xl:border-t-0" : ""}`}
+              >
+                <span className="absolute left-0 top-0 h-px w-0 bg-[var(--chrome-light)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:w-full group-focus:w-full" />
+                <div className="flex items-baseline justify-between gap-4">
+                  <span className="font-mono text-[0.65rem] text-[var(--text-tertiary)]">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="font-mono text-[0.9rem] tracking-tight text-[var(--text-secondary)] transition-colors duration-500 group-hover:text-[var(--chrome-light)] group-focus:text-[var(--chrome-light)]">{tech.name}</span>
+                </div>
+                <div className="mt-3 flex items-center gap-2">
+                  <span className="h-px w-4 bg-[var(--chrome-dark)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:w-8 group-hover:bg-[var(--chrome-mid)] group-focus:w-8 group-focus:bg-[var(--chrome-mid)]" />
+                  <span className="text-[0.7rem] leading-5 text-[var(--text-tertiary)]">{tech.desc}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
