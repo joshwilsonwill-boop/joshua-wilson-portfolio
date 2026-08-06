@@ -20,6 +20,8 @@ const PROJECTS = [
     desc: "An AI-native video editing platform with 6DOF video matting, RL feedback loops, and GPU-orchestrated rendering. Built for creators who refuse to compromise on quality.",
     tags: ["Next.js", "WebGL", "Rust", "Python"],
     image: "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?auto=format&fit=crop&q=80&w=1200",
+    link: "/prometheus",
+    id: "prometheus",
   },
   {
     title: "Cartography of Ignorance",
@@ -28,6 +30,7 @@ const PROJECTS = [
     tags: ["React", "Python", "Neo4j"],
     image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200",
     link: "/work#cartography",
+    id: "cartography",
   },
   {
     title: "Portfolio v1",
@@ -36,14 +39,7 @@ const PROJECTS = [
     tags: ["Next.js", "GSAP", "Three.js"],
     image: "https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?auto=format&fit=crop&q=80&w=1200",
     link: "/#work",
-  },
-  {
-    title: "More coming soon.",
-    tag: "FUTURE",
-    desc: "I am always building. More case studies and open source contributions will be published here as they ship.",
-    tags: ["TBD"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
-    link: "/work#future",
+    id: "portfolio",
   },
 ];
 
@@ -127,7 +123,7 @@ export default function WorkPage() {
             <Link
               key={idx}
               href={project.link || "/work"}
-              id={project.title === "Cartography of Ignorance" ? "cartography" : project.title === "More coming soon." ? "future" : undefined}
+              id={project.id}
               className={`work-grid-card group relative w-full rounded-[1rem] overflow-hidden bg-[var(--bg-surface)] aspect-[4/3] md:aspect-auto ${idx % 2 !== 0 ? 'md:mt-24 md:aspect-[3/4]' : 'md:aspect-[4/3]'}`}
             >
               {/* Image Container with Parallax wrapper */}

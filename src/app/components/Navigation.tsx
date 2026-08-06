@@ -92,9 +92,12 @@ export default function Navigation() {
       <div className="relative flex items-center justify-between bg-[rgba(10,10,15,0.8)] backdrop-blur-md border border-[rgba(255,255,255,0.06)] rounded-full px-6 py-3 z-20">
         <span className="font-bold text-[0.875rem] text-[var(--text-primary)] tracking-tight">JOSHUA WILSON</span>
         <button 
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
           className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
+          aria-controls="site-menu"
         >
           {isOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
@@ -103,6 +106,7 @@ export default function Navigation() {
       {/* Dropdown Menu */}
       <div 
         ref={dropdownRef}
+        id="site-menu"
         className="absolute top-[calc(100%+0.5rem)] left-0 w-full bg-[rgba(10,10,15,0.8)] backdrop-blur-md border border-[rgba(255,255,255,0.06)] rounded-[1.5rem] p-4 invisible -translate-y-4 shadow-2xl z-10"
       >
         <ul className="flex flex-col gap-1">

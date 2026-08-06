@@ -62,7 +62,7 @@ export default function PrometheusCaseStudy() {
     <main ref={containerRef} className="min-h-screen pt-32 pb-24 px-[clamp(1.5rem,5vw,4rem)] max-w-[1200px] mx-auto text-[var(--text-primary)]">
       
       {/* Back Button */}
-      <Link href="/#work" className="inline-flex items-center gap-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors mb-16 group">
+      <Link href="/work#prometheus" className="inline-flex items-center gap-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors mb-16 group">
         <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
         <span className="text-[0.875rem] font-mono tracking-widest uppercase">Back to Portfolio</span>
       </Link>
@@ -77,7 +77,7 @@ export default function PrometheusCaseStudy() {
           PROMETHEUS
         </h1>
         <p className="hero-text text-[clamp(1.25rem,3vw,1.75rem)] text-[var(--text-secondary)] max-w-3xl leading-relaxed">
-          An AI-native video editing platform. 6DOF video matting, RL feedback loops, and bare-metal GPU-orchestrated rendering built for creators who refuse to compromise on quality.
+          An AI-native video editing platform built around browser-based interaction, GPU workers, and a Rust orchestration layer. The goal is simple: make demanding video workflows feel immediate without hiding the hard parts.
         </p>
       </header>
 
@@ -104,7 +104,7 @@ export default function PrometheusCaseStudy() {
         <section>
           <h2 className="text-sm font-mono text-[var(--chrome-light)] uppercase tracking-widest mb-6 border-b border-[rgba(255,255,255,0.1)] pb-2">The Solution</h2>
           <ScrollRevealText className="text-lg leading-relaxed text-[var(--text-secondary)]">
-            Prometheus bypasses standard limits by orchestrating dedicated A100 GPU clusters via WebRTC and Rust microservices. The result is real-time 4K rendering and frame-perfect AI depth mapping that runs natively at 60fps in the browser. I don&apos;t write code. I write inevitability.
+            Prometheus moves heavy video work out of the browser and into an observable GPU workflow connected through WebRTC and Rust services. The editor stays responsive while workers handle depth mapping and rendering. The hard part was not making a convincing demo; it was making the system retryable, measurable, and useful under pressure.
           </ScrollRevealText>
         </section>
       </div>
@@ -154,10 +154,10 @@ export default function PrometheusCaseStudy() {
         <h2 className="text-2xl font-bold font-display mb-8">Performance Telemetry</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Latency", value: "14ms" },
-            { label: "Throughput", value: "60 FPS" },
-            { label: "Model VRAM", value: "24GB" },
-            { label: "Resolution", value: "4K Native" }
+            { label: "Latency target", value: "14ms" },
+            { label: "Preview target", value: "60 FPS" },
+            { label: "GPU footprint", value: "24GB" },
+            { label: "Pipeline output", value: "4K" }
           ].map((metric, i) => (
             <div key={i} className="bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] p-6 rounded-xl flex flex-col gap-2">
               <span className="text-[0.75rem] font-mono tracking-widest uppercase text-[var(--text-tertiary)]">{metric.label}</span>
@@ -167,9 +167,9 @@ export default function PrometheusCaseStudy() {
         </div>
       </section>
 
-      {/* View other blogs */}
+      {/* Related writing */}
       <section className="mb-32">
-        <h2 className="text-2xl font-bold font-display mb-8">View other blogs</h2>
+        <h2 className="text-2xl font-bold font-display mb-8">Related writing</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {MORE_POSTS.map((post, idx) => (
             <Link key={idx} href="/thoughts" className="group block bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.05)] rounded-xl overflow-hidden hover:border-[rgba(255,255,255,0.1)] transition-all duration-300 hover:-translate-y-1">
@@ -189,7 +189,7 @@ export default function PrometheusCaseStudy() {
       {/* Footer */}
       <footer className="border-t border-[rgba(255,255,255,0.1)] pt-12 flex justify-between items-center">
         <span className="font-mono text-sm text-[var(--text-tertiary)]">© 2026 Prometheus Dev</span>
-        <Link href="/#work" className="font-mono text-sm text-[var(--chrome-light)] hover:text-white transition-colors">
+        <Link href="/work#prometheus" className="font-mono text-sm text-[var(--chrome-light)] hover:text-white transition-colors">
           RETURN
         </Link>
       </footer>

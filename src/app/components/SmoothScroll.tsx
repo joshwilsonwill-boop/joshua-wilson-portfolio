@@ -11,10 +11,22 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
     const refreshFrame = window.requestAnimationFrame(() => {
+      const hash = window.location.hash.slice(1);
+      const target = hash ? document.getElementById(decodeURIComponent(hash)) : null;
+
+      if (target && lenisRef.current) {
+        lenisRef.current.scrollTo(target, {
+          offset: -96,
+          duration: 0.8,
+          force: true,
+        });
+      }
+
       ScrollTrigger.refresh();
     });
 
@@ -31,6 +43,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       anchors: true,
       stopInertiaOnNavigate: true,
     });
+    lenisRef.current = lenis;
 
     // Velocity-based skew effect on elements with .skew-on-scroll class
     lenis.on("scroll", (e) => {
@@ -40,13 +53,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       // Max skew is 2 degrees
       const velocity = e.velocity;
       const skew = Math.max(-2, Math.min(2, velocity * 0.05));
-      
-      gsap.to(".skew-on-scroll", {
-        skewY: skew,
-        duration: 0.1,
-        overwrite: "auto",
-        ease: "power1.out",
-      });
+      const skewTargets = document.querySelectorAll(".skew-on-scroll");
+
+      if (skewTargets.length) {
+        gsap.to(skewTargets, {
+          skewY: skew,
+          duration: 0.1,
+          overwrite: "auto",
+          ease: "power1.out",
+        });
+      }
     });
 
     const tickerCallback = (time: number) => {
@@ -60,6 +76,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     return () => {
       gsap.ticker.remove(tickerCallback);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, { scope: containerRef });
 

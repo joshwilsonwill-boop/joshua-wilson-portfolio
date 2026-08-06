@@ -30,6 +30,20 @@ const STACK = [
   { name: "Modal", desc: "Serverless GPU", svgPath: "M4.89 5.57 0 14.002l2.521 4.4h5.05l4.396-7.718 4.512 7.709 4.996.037L24 14.057l-4.857-8.452-5.073-.015-2.076 3.598L9.94 5.57Zm.837.729h3.787l1.845 3.252H7.572Zm9.189.021 3.803.012 4.228 7.355-3.736-.027zm-9.82.346L6.94 9.914l-4.209 7.389-1.892-3.3Zm9.187.014 4.297 7.343-1.892 3.282-4.3-7.344zm-6.713 3.6h3.79l-4.212 7.394H3.361Zm11.64 4.109 3.74.027-1.893 3.281-3.74-.027z" },
 ];
 
+const PRIMARY_STACK_NAMES = new Set([
+  "Next.js",
+  "TypeScript",
+  "GSAP",
+  "Three.js / R3F",
+  "Python",
+  "Rust",
+  "PostgreSQL",
+  "Temporal",
+]);
+
+const PRIMARY_STACK = STACK.filter((tech) => PRIMARY_STACK_NAMES.has(tech.name));
+const SECONDARY_STACK = STACK.filter((tech) => !PRIMARY_STACK_NAMES.has(tech.name));
+
 export default function Stack() {
   const containerRef = useRef<HTMLElement>(null);
 
@@ -73,7 +87,7 @@ export default function Stack() {
         </div>
 
         <div className="lg:w-[65%] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-          {STACK.map((tech, index) => (
+          {PRIMARY_STACK.map((tech, index) => (
             <div
               key={index}
               className="tech-card group flex flex-col gap-3 p-6 rounded-[0.75rem] border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)] transition-all duration-300 ease-out hover:-translate-y-[2px] hover:border-[rgba(255,255,255,0.12)]"
@@ -96,6 +110,15 @@ export default function Stack() {
             </div>
           ))}
         </div>
+      </div>
+
+      <div className="mt-8 flex flex-wrap items-center gap-2 text-[0.75rem] font-mono uppercase tracking-wider text-[var(--text-tertiary)]">
+        <span className="mr-2">Also use:</span>
+        {SECONDARY_STACK.map((tech) => (
+          <span key={tech.name} className="rounded-full border border-[rgba(255,255,255,0.08)] px-3 py-1.5">
+            {tech.name}
+          </span>
+        ))}
       </div>
     </section>
   );

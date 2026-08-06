@@ -101,7 +101,7 @@ export default function Footer() {
             / Connect
           </span>
           <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-display font-bold leading-tight text-[var(--text-primary)]">
-            Scaling Start-ups for Growth.
+            Build clearly. Ship deliberately.
           </h2>
           <p className="text-[var(--text-secondary)] text-[1rem] leading-[1.6]">
             I&apos;m always open to discussing product architecture, creative engineering, or potential partnerships.
@@ -119,9 +119,9 @@ export default function Footer() {
       </div>
 
       <div className="absolute bottom-[-15%] left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none z-0">
-        <h1 className="font-display font-bold text-[clamp(6rem,20vw,16rem)] text-[rgba(255,255,255,0.03)] whitespace-nowrap leading-none tracking-tighter">
+        <div className="font-display font-bold text-[clamp(6rem,20vw,16rem)] text-[rgba(255,255,255,0.03)] whitespace-nowrap leading-none tracking-tighter" aria-hidden="true">
           JOSHUA WILSON
-        </h1>
+        </div>
       </div>
     </footer>
   );

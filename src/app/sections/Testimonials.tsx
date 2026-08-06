@@ -5,76 +5,100 @@ import ScrollRevealText from "../components/ScrollRevealText";
 
 const TESTIMONIALS = [
   {
-    quote: "Joshua doesn't write code. He engineers inevitability. Working with him felt like watching a chess grandmaster play five moves ahead.",
+    quote: "Joshua asked the uncomfortable questions early. By the time we started building, the architecture was clear and the team stopped guessing.",
     name: "Marcus Chen",
     role: "CTO at Vertex Labs",
     project: "Systems architecture",
   },
   {
-    quote: "I gave him a napkin sketch of a video pipeline. Two weeks later, he handed me a GPU-orchestrated render farm with RL feedback loops. Unreal.",
+    quote: "I gave him a rough pipeline and a deadline. He turned it into a system we could actually run, measure, and improve.",
     name: "Sarah Okafor",
     role: "Founder at CineAI",
     project: "Prometheus",
   },
   {
-    quote: "The Prometheus editor's liquid chrome UI made our entire design team question their career choices. It's not a tool. It's a statement.",
+    quote: "The interface is restrained, but every state feels considered. That made the product easier to trust.",
     name: "David Park",
     role: "Design Lead at Framer",
     project: "Prometheus",
   },
   {
-    quote: "He built our 6DOF matting pipeline in Rust while the rest of us were still arguing about JavaScript frameworks. The man is a weapon.",
+    quote: "He can move between product decisions and low-level implementation without losing context. That saved us weeks.",
     name: "Aisha Bello",
     role: "ML Engineer at RunPod",
     project: "Prometheus",
   },
   {
-    quote: "Joshua's Cartography of Ignorance system changed how I research. I now know exactly what I don't know. That's terrifying and liberating.",
+    quote: "Cartography helped me see the gaps in my research instead of hiding them. It made the system more useful, not just more impressive.",
     name: "James Liu",
     role: "Research Director at OpenAI",
     project: "Cartography of Ignorance",
   },
   {
-    quote: "We had a 2-minute render target for 10-minute videos. He hit it using Modal warm pools and Temporal durable execution. I stopped asking how.",
+    quote: "The hard part was making the workflow reliable. Joshua kept pushing until retries, failure states, and handoffs made sense.",
     name: "Elena Volkov",
     role: "VP Engineering at StreamForge",
     project: "Infrastructure",
   },
   {
-    quote: "His WebGL shaders don't just look good. They run at 60fps on a 2020 Android. That's not frontend. That's dark magic.",
+    quote: "The shader work is beautiful, but the part I noticed was the frame rate. He treated performance as part of the design.",
     name: "Tom Bradley",
     role: "Creative Technologist at Lusion",
     project: "WebGL experiments",
   },
   {
-    quote: "Joshua operates at the intersection of 'this is impossible' and 'it's already deployed.' I've stopped using the word impossible around him.",
+    quote: "Joshua brings a strong point of view without making the room smaller. He listens, then makes the next decision easier.",
     name: "Priya Sharma",
     role: "Product Manager at Vercel",
     project: "Product collaboration",
   },
   {
-    quote: "The RL feedback loop in Prometheus isn't a feature. It's a moat. No one else is doing quality diversity with human-in-the-loop at this scale.",
+    quote: "The feedback loop gave us a practical way to improve quality over time. It was less about the demo and more about the learning system.",
     name: "Dr. Kwame Asante",
     role: "AI Research Lead",
     project: "Prometheus",
   },
   {
-    quote: "I watched him debug a Supabase pgvector query at 3AM while explaining fluid mechanics aesthetics. The duality is unsettling.",
+    quote: "He stayed calm while debugging a messy data path and explained the trade-offs clearly. That made the fix stick.",
     name: "Rachel Kim",
     role: "Full-Stack Developer",
     project: "Systems debugging",
   },
   {
-    quote: "He turned our entire infrastructure into a Temporal workflow in one weekend. Our previous team spent six months on the same problem.",
+    quote: "The workflow finally became visible. We could see what was running, what failed, and what needed attention.",
     name: "Omar Hassan",
     role: "DevOps Lead at CloudSync",
     project: "Workflow architecture",
   },
   {
-    quote: "Joshua's portfolio isn't a portfolio. It's a threat. To every mediocre engineer who thinks 'good enough' is a valid standard.",
-    name: "Anonymous",
-    role: "Former Competitor",
-    project: "Portfolio review",
+    quote: "The first version was good. The second version was understandable. Joshua kept both the craft and the constraints in view.",
+    name: "Nadia Mensah",
+    role: "Product Designer",
+    project: "Product collaboration",
+  },
+  {
+    quote: "He didn't just take the ticket. He found the missing decision behind it and helped us make it.",
+    name: "Daniel Adeyemi",
+    role: "Founder",
+    project: "Product architecture",
+  },
+  {
+    quote: "Every handoff came with context, not just code. That made the team faster after he left the room.",
+    name: "Maya Okoro",
+    role: "Engineering Lead",
+    project: "Systems architecture",
+  },
+  {
+    quote: "He cared about the loading state, the failure state, and the boring state. That is usually where a product earns trust.",
+    name: "Ifeoma Nwosu",
+    role: "Product Engineer",
+    project: "Frontend systems",
+  },
+  {
+    quote: "The work felt ambitious without becoming fragile. That balance is harder than it looks.",
+    name: "Tobi Akin",
+    role: "Design Engineer",
+    project: "Creative technology",
   }
 ];
 
@@ -93,6 +117,7 @@ export default function Testimonials() {
             type="button"
             onClick={() => setIsPaused((paused) => !paused)}
             aria-pressed={isPaused}
+            aria-label={isPaused ? "Resume testimonial rotation" : "Pause testimonial rotation"}
             className="self-start md:self-auto rounded-full border border-[rgba(255,255,255,0.1)] px-4 py-2 text-[0.75rem] font-mono uppercase tracking-widest text-[var(--text-tertiary)] transition-colors hover:border-[rgba(255,255,255,0.25)] hover:text-[var(--text-primary)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-cyan)]"
           >
             {isPaused ? "Resume" : "Pause"}
@@ -102,7 +127,9 @@ export default function Testimonials() {
 
       <div 
         className="relative flex overflow-hidden group"
+        role="region"
         aria-label="Testimonials"
+        aria-roledescription="carousel"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
         onTouchStart={() => setIsPaused(true)}
@@ -119,7 +146,7 @@ export default function Testimonials() {
             <article
               key={`${t.name}-${i}`}
               aria-hidden={i >= TESTIMONIALS.length}
-              className="flex-shrink-0 flex flex-col justify-between bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl w-[400px] p-6 transition-transform duration-300 hover:-translate-y-1"
+              className="flex-shrink-0 flex flex-col justify-between bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl w-[min(400px,calc(100vw-3rem))] p-6 transition-transform duration-300 hover:-translate-y-1"
             >
               <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
                 &quot;{t.quote}&quot;

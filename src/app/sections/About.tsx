@@ -53,7 +53,7 @@ export default function About() {
             </ScrollRevealText>
             
             <ScrollRevealText>
-              Over the last 6 years, I&apos;ve architected platforms that scale to millions of users, designed interactions that win Awwwards, and helped stealth startups turn raw ideas into fundable products.
+              Since 2022, I&apos;ve helped turn ambiguous product ideas into working systems—shipping across the frontend, backend, and infrastructure without losing the thread of the user experience.
             </ScrollRevealText>
 
             <ScrollRevealText>
