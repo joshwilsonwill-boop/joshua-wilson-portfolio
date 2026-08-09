@@ -4,12 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface HeroFlipImageProps {
-  src: string;
   alt: string;
   className?: string;
 }
 
-export default function HeroFlipImage({ src, alt, className = "" }: HeroFlipImageProps) {
+export default function HeroFlipImage({ alt, className = "" }: HeroFlipImageProps) {
   const [flipped, setFlipped] = useState(false);
 
   useEffect(() => {
@@ -38,13 +37,13 @@ export default function HeroFlipImage({ src, alt, className = "" }: HeroFlipImag
           }}
         >
           <Image
-            src={src}
+            src="/images/hero-grayscale.png"
             alt={alt}
             fill
             priority={true}
+            sizes="(max-width: 768px) 320px, 450px"
             className="object-cover"
             style={{
-              filter: "grayscale(100%)",
               transform: "scaleX(-1)",
             }}
           />
@@ -59,10 +58,11 @@ export default function HeroFlipImage({ src, alt, className = "" }: HeroFlipImag
           }}
         >
           <Image
-            src={src}
+            src="/images/hero-red.png"
             alt={alt}
             fill
             priority={true}
+            sizes="(max-width: 768px) 320px, 450px"
             className="object-cover"
           />
         </div>

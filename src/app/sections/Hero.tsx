@@ -191,7 +191,6 @@ export default function Hero() {
           <div className="lg:hidden mt-12 w-full flex flex-col items-center">
             <div ref={portraitMobileRef} className="relative w-[80%] max-w-[320px] aspect-[4/5] rounded-[1.5rem] mb-6 border border-[#00d4ff]/10 shadow-[0_0_30px_rgba(0,212,255,0.05)] transition-all duration-700 hover:border-[#00d4ff]/30 hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] group">
               <HeroFlipImage
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
                 alt="Joshua Wilson Portrait"
                 className="w-full h-full rounded-[1.5rem] bg-[var(--bg-surface)] shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
               />
@@ -206,7 +205,6 @@ export default function Hero() {
         <div className="hidden lg:flex flex-col items-center justify-center pr-[clamp(1rem,4vw,6rem)]">
           <div ref={portraitRef} className="relative w-full max-w-[450px] aspect-[4/5] rounded-[1.5rem] mb-6 border border-[#00d4ff]/10 shadow-[0_0_30px_rgba(0,212,255,0.05)] transition-all duration-700 hover:border-[#00d4ff]/30 hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] group">
             <HeroFlipImage
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
               alt="Joshua Wilson Portrait"
               className="w-full h-full rounded-[1.5rem] bg-[var(--bg-surface)] shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
             />
