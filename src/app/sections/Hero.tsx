@@ -73,50 +73,56 @@ export default function Hero() {
       id="hero"
     >
       {/* Floating 2D Assets - Now Draggable and larger on mobile */}
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute top-[10%] lg:top-[15%] left-[5%] lg:left-[8%] z-[20] cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-          src="/floating/sparkle.png" 
-          alt="Sparkle" 
-          className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
+      <div className="absolute top-[10%] lg:top-[15%] left-[5%] lg:left-[8%] z-[20]">
+        <motion.div
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          className="relative cursor-grab"
+        >
+          <motion.img 
+            animate={{ y: [0, -20, 0], rotate: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+            src="/floating/sparkle.png" 
+            alt="Sparkle" 
+            className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
+          />
+        </motion.div>
+      </div>
 
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute top-[15%] lg:top-[12%] right-[5%] lg:right-[8%] z-[20] cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-          src="/floating/lightning.png" 
-          alt="Lightning" 
-          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
+      <div className="absolute top-[15%] lg:top-[12%] right-[5%] lg:right-[8%] z-[20]">
+        <motion.div
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          className="relative cursor-grab"
+        >
+          <motion.img 
+            animate={{ y: [0, -15, 0], rotate: [0, -5, 0] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
+            src="/floating/lightning.png" 
+            alt="Lightning" 
+            className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
+          />
+        </motion.div>
+      </div>
 
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20] hidden md:block cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -22, 0], rotate: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
-          src="/floating/lightning.png" 
-          alt="Lightning" 
-          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
+      <div className="absolute top-[60%] lg:top-[55%] left-[8%] lg:left-[25%] z-[20] hidden md:block">
+        <motion.div
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          className="relative cursor-grab"
+        >
+          <motion.img 
+            animate={{ y: [0, -22, 0], rotate: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut" }}
+            src="/floating/lightning.png" 
+            alt="Lightning" 
+            className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
+          />
+        </motion.div>
+      </div>
       
       {/* Desktop Split Grid / Mobile Stack */}
       <div className="w-full max-w-[1600px] mx-auto px-[clamp(1.5rem,5vw,4rem)] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10 pt-32 pb-20 lg:py-0">

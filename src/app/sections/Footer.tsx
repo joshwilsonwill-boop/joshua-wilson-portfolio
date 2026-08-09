@@ -48,35 +48,39 @@ export default function Footer() {
     <footer ref={containerRef} className="relative w-full overflow-hidden bg-[var(--bg-primary)] pt-32 pb-8 flex flex-col items-center">
       
       {/* Floating 2D Assets */}
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute top-[10%] left-[10%] lg:left-[15%] z-[20] cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-          src="/floating/sparkle.png" 
-          alt="Sparkle" 
-          className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
+      <div className="absolute top-[10%] left-[10%] lg:left-[15%] z-[20]">
+        <motion.div
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          className="relative cursor-grab"
+        >
+          <motion.img 
+            animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
+            src="/floating/sparkle.png" 
+            alt="Sparkle" 
+            className="w-16 md:w-20 lg:w-24 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
+          />
+        </motion.div>
+      </div>
 
-      <motion.div
-        drag 
-        dragConstraints={containerRef}
-        whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-        className="absolute bottom-[40%] right-[10%] lg:right-[15%] z-[20] cursor-grab"
-      >
-        <motion.img 
-          animate={{ y: [0, -20, 0], rotate: [0, -5, 0] }}
-          transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-          src="/floating/lightning.png" 
-          alt="Lightning" 
-          className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
-        />
-      </motion.div>
+      <div className="absolute bottom-[40%] right-[10%] lg:right-[15%] z-[20]">
+        <motion.div
+          drag 
+          dragConstraints={containerRef}
+          whileDrag={{ scale: 1.1, cursor: "grabbing" }}
+          className="relative cursor-grab"
+        >
+          <motion.img 
+            animate={{ y: [0, -20, 0], rotate: [0, -5, 0] }}
+            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+            src="/floating/lightning.png" 
+            alt="Lightning" 
+            className="w-14 md:w-16 lg:w-20 opacity-80 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] will-change-transform pointer-events-none" 
+          />
+        </motion.div>
+      </div>
 
       <div className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] flex flex-col md:flex-row justify-between items-start md:items-end gap-12 mb-32 z-10">
         <div className="footer-element">
