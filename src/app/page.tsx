@@ -1,6 +1,6 @@
 import Navigation from "./components/Navigation";
 import LiquidChrome from "./components/LiquidChrome";
-import Hero from "./sections/Hero";
+import HeroPortfolioCard from "./components/hero-portfolio-card";
 import About from "./sections/About";
 import Stack from "./sections/Stack";
 import Services from "./sections/Services";
@@ -18,7 +18,12 @@ export default function Home() {
       <LiquidChrome />
       
       <div className="z-10 w-full relative">
-        <Hero />
+        <HeroPortfolioCard
+          name="JOSHUA WILSON"
+          title="FOUNDING ENGINEER"
+          subtitle="Your code is bad"
+          since="2022"
+        />
         <About />
         <Stack />
         <Services />
