@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ImageParallax from "../components/ImageParallax";
+import HeroFlipImage from "../components/hero-flip-image";
 import ScrollRevealText from "../components/ScrollRevealText";
 import Typewriter from "../components/Typewriter";
 import { motion } from "framer-motion";
@@ -190,10 +190,10 @@ export default function Hero() {
           {/* Mobile Portrait */}
           <div className="lg:hidden mt-12 w-full flex flex-col items-center">
             <div ref={portraitMobileRef} className="relative w-[80%] max-w-[320px] aspect-[4/5] rounded-[1.5rem] mb-6 border border-[#00d4ff]/10 shadow-[0_0_30px_rgba(0,212,255,0.05)] transition-all duration-700 hover:border-[#00d4ff]/30 hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] group">
-              <ImageParallax
+              <HeroFlipImage
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
                 alt="Joshua Wilson Portrait"
-                containerClassName="w-full h-full rounded-[1.5rem] bg-[var(--bg-surface)] shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+                className="w-full h-full rounded-[1.5rem] bg-[var(--bg-surface)] shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
               />
             </div>
             <span className="uppercase text-[0.75rem] tracking-[0.15em] text-[var(--text-tertiary)] font-mono">
@@ -205,10 +205,10 @@ export default function Hero() {
         {/* Right Column - Portrait (Desktop Only) */}
         <div className="hidden lg:flex flex-col items-center justify-center pr-[clamp(1rem,4vw,6rem)]">
           <div ref={portraitRef} className="relative w-full max-w-[450px] aspect-[4/5] rounded-[1.5rem] mb-6 border border-[#00d4ff]/10 shadow-[0_0_30px_rgba(0,212,255,0.05)] transition-all duration-700 hover:border-[#00d4ff]/30 hover:shadow-[0_0_40px_rgba(0,212,255,0.15)] group">
-            <ImageParallax
+            <HeroFlipImage
               src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop"
               alt="Joshua Wilson Portrait"
-              containerClassName="w-full h-full rounded-[1.5rem] bg-[var(--bg-surface)] shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
+              className="w-full h-full rounded-[1.5rem] bg-[var(--bg-surface)] shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
             />
           </div>
           <span className="uppercase text-[0.75rem] tracking-[0.15em] text-[var(--text-tertiary)] font-mono self-center pr-[clamp(1rem,4vw,6rem)]">
