@@ -19,12 +19,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       const hash = window.location.hash.slice(1);
       const target = hash ? document.getElementById(decodeURIComponent(hash)) : null;
 
-      if (target && lenisRef.current) {
-        lenisRef.current.scrollTo(target, {
-          offset: -96,
-          duration: 0.8,
-          force: true,
-        });
+      if (lenisRef.current) {
+        if (target) {
+          lenisRef.current.scrollTo(target, {
+            offset: -96,
+            duration: 0.8,
+            force: true,
+          });
+        } else {
+          lenisRef.current.scrollTo(0, { immediate: true, force: true });
+        }
       }
 
       ScrollTrigger.refresh();
