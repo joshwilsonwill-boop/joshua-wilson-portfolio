@@ -18,7 +18,7 @@ const PROJECTS = [
     desc: "An AI-native video editing platform with 6DOF video matting, RL feedback loops, and GPU-orchestrated rendering. Built for creators who refuse to compromise on quality.",
     tags: ["Next.js", "WebGL", "Rust"],
     image: "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?auto=format&fit=crop&q=80&w=1200",
-    link: "/prometheus",
+    link: "/work/prometheus",
   },
   {
     title: "Cartography",
