@@ -36,7 +36,7 @@ const PROJECTS: Project[] = [
     desc: "Real-time 3D visualization of GPU clusters, render queues, and pipeline health. Built to prove systems architecture isn't just backend — it's observable, beautiful, and alive.",
     tags: ["WebGL", "WebSockets", "React"],
     image: "/images/pulse-dashboard.jpg",
-    link: "https://pulse-infra.vercel.app",
+    link: "/work/pulse",
   },
   {
     title: "FORGE",
@@ -44,7 +44,7 @@ const PROJECTS: Project[] = [
     desc: "Describe your product, get a deployable landing page in 30 seconds. End-to-end AI-native product design — prompt to preview to export.",
     tags: ["Next.js", "AI", "Tailwind"],
     image: "/images/forge-dashboard.jpg",
-    link: "https://forge-ai.vercel.app",
+    link: "/work/forge",
   },
   {
     title: "AURA",
@@ -52,7 +52,7 @@ const PROJECTS: Project[] = [
     desc: "UI primitives for the spatial web. Liquid chrome, glass refraction, holographic text — copy, paste, ship. A design system built for founders who want interfaces that feel alive.",
     tags: ["React", "Three.js", "Framer Motion"],
     image: "/images/aura-ui-kit.jpg",
-    link: "https://aura-ui.vercel.app",
+    link: "/work/aura",
   },
 ];
 
