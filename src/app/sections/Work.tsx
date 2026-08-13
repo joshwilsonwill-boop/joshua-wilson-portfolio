@@ -23,7 +23,7 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    title: "Prometheus",
+    title: "PROMETHEUS",
     tag: "STEALTH",
     desc: "An AI-native video editing platform with 6DOF video matting, RL feedback loops, and GPU-orchestrated rendering. Built for creators who refuse to compromise on quality.",
     tags: ["Next.js", "WebGL", "Rust"],
@@ -35,7 +35,7 @@ const PROJECTS: Project[] = [
     tag: "INFRASTRUCTURE COMMAND CENTER",
     desc: "Real-time 3D visualization of GPU clusters, render queues, and pipeline health. Built to prove systems architecture isn't just backend — it's observable, beautiful, and alive.",
     tags: ["WebGL", "WebSockets", "React"],
-    placeholderText: "[PULSE Dashboard Preview — 1200x675]",
+    image: "/images/pulse-dashboard.jpg",
     link: "https://pulse-infra.vercel.app",
   },
   {
@@ -43,7 +43,7 @@ const PROJECTS: Project[] = [
     tag: "AI LANDING PAGE BUILDER",
     desc: "Describe your product, get a deployable landing page in 30 seconds. End-to-end AI-native product design — prompt to preview to export.",
     tags: ["Next.js", "AI", "Tailwind"],
-    placeholderText: "[FORGE Screenshot — 1200x675]",
+    image: "/images/forge-dashboard.jpg",
     link: "https://forge-ai.vercel.app",
   },
   {
@@ -51,7 +51,7 @@ const PROJECTS: Project[] = [
     tag: "3D SPATIAL UI KIT",
     desc: "UI primitives for the spatial web. Liquid chrome, glass refraction, holographic text — copy, paste, ship. A design system built for founders who want interfaces that feel alive.",
     tags: ["React", "Three.js", "Framer Motion"],
-    placeholderText: "[AURA Component Preview — 1200x675]",
+    image: "/images/aura-ui-kit.jpg",
     link: "https://aura-ui.vercel.app",
   },
 ];
