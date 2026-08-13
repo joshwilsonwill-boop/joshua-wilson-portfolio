@@ -11,21 +11,32 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PROJECTS = [
+type Project = {
+  title: string;
+  tag: string;
+  desc: string;
+  tags: string[];
+  image: string;
+  link?: string;
+};
+
+type EmptyProject = {
+  isEmpty: true;
+};
+
+type ProjectItem = Project | EmptyProject;
+
+const PROJECTS: ProjectItem[] = [
   {
     title: "Prometheus",
     tag: "STEALTH",
     desc: "An AI-native video editing platform with 6DOF video matting, RL feedback loops, and GPU-orchestrated rendering. Built for creators who refuse to compromise on quality.",
     tags: ["Next.js", "WebGL", "Rust"],
-    image: "https://images.unsplash.com/photo-1634152962476-4b8a00e1915c?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/prometheus-landing.png",
     link: "/work/prometheus",
   },
   {
-    title: "Cartography",
-    tag: "PERSONAL SYSTEM",
-    desc: "A personal knowledge management system built on Notion, custom Python pipelines, and graph databases. It maps what I don't know so I can navigate what I do.",
-    tags: ["React", "Python", "Neo4j"],
-    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=1200",
+    isEmpty: true,
   },
   {
     title: "Portfolio v1",
@@ -89,48 +100,61 @@ export default function Work() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        {PROJECTS.map((project, idx) => (
-          <Link
-            key={idx}
-            href={project.link || "/work"}
-            className="project-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
-          >
-            {/* Thumbnail */}
-            <div className="w-full aspect-video relative overflow-hidden bg-[var(--bg-surface)] border-b border-[rgba(255,255,255,0.04)]">
-              <Image
-                src={project.image} 
-                alt={project.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover grayscale transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0"
-                loading="lazy"
-              />
-            </div>
-            
-            {/* Content (Asymmetric padding) */}
-            <div className="flex flex-col pt-8 pb-10 pl-[clamp(1.5rem,4vw,3.5rem)] pr-[clamp(1.5rem,2vw,2rem)] flex-1">
-              <span className="text-[0.75rem] font-mono tracking-[0.2em] uppercase text-[var(--text-tertiary)] mb-4 block">
-                {project.tag}
-              </span>
-              
-              <h3 className="font-display font-bold text-[clamp(1.5rem,3vw,2rem)] tracking-tight text-[var(--text-primary)] leading-[1.1] mb-4 transition-colors group-hover:text-[var(--chrome-light)]">
-                {project.title}
-              </h3>
-              
-              <p className="text-[0.875rem] md:text-[1rem] text-[var(--text-secondary)] leading-[1.6] mb-8 line-clamp-3">
-                {project.desc}
-              </p>
-              
-              <div className="flex flex-wrap gap-2 mt-auto">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 rounded-full border border-[rgba(255,255,255,0.1)] text-[0.75rem] font-mono text-[var(--text-secondary)]">
-                    {tag}
-                  </span>
-                ))}
+        {PROJECTS.map((project, idx) => {
+          if ("isEmpty" in project) {
+            return (
+              <div
+                key={idx}
+                className="project-card group flex flex-col bg-[rgba(255,255,255,0.01)] border border-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.06)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden items-center justify-center min-h-[300px]"
+              >
+                <span className="text-[var(--text-tertiary)] font-mono text-sm tracking-widest uppercase opacity-50">Coming Soon</span>
               </div>
-            </div>
-          </Link>
-        ))}
+            );
+          }
+
+          return (
+            <Link
+              key={idx}
+              href={project.link || "/work"}
+              className="project-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
+            >
+              {/* Thumbnail */}
+              <div className="w-full aspect-video relative overflow-hidden bg-[var(--bg-surface)] border-b border-[rgba(255,255,255,0.04)]">
+                <Image
+                  src={project.image} 
+                  alt={project.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover grayscale transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:grayscale-0"
+                  loading="lazy"
+                />
+              </div>
+              
+              {/* Content (Asymmetric padding) */}
+              <div className="flex flex-col pt-8 pb-10 pl-[clamp(1.5rem,4vw,3.5rem)] pr-[clamp(1.5rem,2vw,2rem)] flex-1">
+                <span className="text-[0.75rem] font-mono tracking-[0.2em] uppercase text-[var(--text-tertiary)] mb-4 block">
+                  {project.tag}
+                </span>
+                
+                <h3 className="font-display font-bold text-[clamp(1.5rem,3vw,2rem)] tracking-tight text-[var(--text-primary)] leading-[1.1] mb-4 transition-colors group-hover:text-[var(--chrome-light)]">
+                  {project.title}
+                </h3>
+                
+                <p className="text-[0.875rem] md:text-[1rem] text-[var(--text-secondary)] leading-[1.6] mb-8 line-clamp-3">
+                  {project.desc}
+                </p>
+                
+                <div className="flex flex-wrap gap-2 mt-auto">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1 rounded-full border border-[rgba(255,255,255,0.1)] text-[0.75rem] font-mono text-[var(--text-secondary)]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
 
       <div className="md:hidden mt-12 flex justify-center">
