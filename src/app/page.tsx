@@ -9,6 +9,8 @@ import Testimonials from "./sections/Testimonials";
 import Thoughts from "./sections/Thoughts";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
+import Lab from "./sections/Lab";
+import FieldNotes from "./sections/FieldNotes";
 
 export default function Home() {
   return (
@@ -22,9 +24,11 @@ export default function Home() {
         <About />
         <Stack />
         <Services />
+        <Lab />
         <Work />
         <Testimonials />
         <Thoughts />
+        <FieldNotes />
         <Contact />
       </div>
       
