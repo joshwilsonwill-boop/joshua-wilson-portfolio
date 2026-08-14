@@ -6,6 +6,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import ScrollRevealText from "../components/ScrollRevealText";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,9 +70,20 @@ export default function Lab() {
 
   return (
     <section id="lab" ref={containerRef} className="w-full max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] py-[clamp(6rem,15vh,12rem)]">
-      <div className="mb-16">
-        <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight text-[var(--text-primary)] font-display mb-2">LAB</h2>
-        <ScrollRevealText className="text-[1rem] text-[var(--text-secondary)]">The weird experiments and technical toys.</ScrollRevealText>
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16 gap-8">
+        <div>
+          <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight text-[var(--text-primary)] font-display mb-2">LAB</h2>
+          <ScrollRevealText className="text-[1rem] text-[var(--text-secondary)]">The weird experiments and technical toys.</ScrollRevealText>
+        </div>
+        <div className="hidden md:block">
+          <Link href="/lab" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+            <span className="relative">
+              View All Experiments
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
+            </span>
+            <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
@@ -110,6 +123,16 @@ export default function Lab() {
             </div>
           </a>
         ))}
+      </div>
+
+      <div className="md:hidden mt-12 flex justify-center">
+        <Link href="/lab" className="group inline-flex items-center gap-2 text-[1rem] font-medium text-[var(--text-primary)] hover:text-[var(--chrome-light)] transition-colors">
+          <span className="relative">
+            View All Experiments
+            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[var(--chrome-mid)] transition-all duration-300 group-hover:w-full" />
+          </span>
+          <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
+        </Link>
       </div>
     </section>
   );
