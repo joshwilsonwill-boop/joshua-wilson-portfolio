@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 
 export default function PrometheusCaseStudy() {
@@ -46,8 +47,15 @@ export default function PrometheusCaseStudy() {
             </div>
           </div>
 
-          <div className="w-full aspect-video bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] rounded-[1rem] flex items-center justify-center text-[var(--text-tertiary)] font-mono text-[0.875rem] uppercase tracking-widest">
-            [Prometheus Studio Screenshot - 1200x675]
+          <div className="w-full aspect-video relative rounded-[1rem] overflow-hidden border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]">
+            <Image 
+              src="/images/prometheus-landing.png"
+              alt="Prometheus Studio"
+              fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
+              className="object-cover"
+              priority
+            />
           </div>
         </section>
 

@@ -26,6 +26,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             duration: 0.8,
             force: true,
           });
+        } else {
+          // Reset scroll to top on normal page navigation
+          lenisRef.current.scrollTo(0, { immediate: true });
         }
       }
 
