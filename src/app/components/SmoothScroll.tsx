@@ -13,6 +13,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   const containerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
+  const isPopState = useRef(false);
+
+  useEffect(() => {
+    const onPopState = () => {
+      isPopState.current = true;
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
 
   useEffect(() => {
     const refreshFrame = window.requestAnimationFrame(() => {
@@ -26,12 +35,13 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             duration: 0.8,
             force: true,
           });
-        } else {
-          // Reset scroll to top on normal page navigation
+        } else if (!isPopState.current) {
+          // Reset scroll to top ONLY on normal page navigation (PUSH), not back button (POP)
           lenisRef.current.scrollTo(0, { immediate: true });
         }
       }
-
+      
+      isPopState.current = false;
       ScrollTrigger.refresh();
     });
 
