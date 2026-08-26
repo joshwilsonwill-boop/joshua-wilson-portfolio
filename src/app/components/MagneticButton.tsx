@@ -29,16 +29,6 @@ export default function MagneticButton({ children, className = "", onClick, ...p
   );
   
   // Real cursor coordinates (not normalized)
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updateCursor = (e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updateCursor);
-    return () => window.removeEventListener("mousemove", updateCursor);
-  }, []);
-
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -47,21 +37,28 @@ export default function MagneticButton({ children, className = "", onClick, ...p
   const springY = useSpring(y, springConfig);
 
   useEffect(() => {
-    if (isHovered && ref.current && !isMobile) {
+    if (!isHovered || isMobile || !ref.current) {
+      x.set(0);
+      y.set(0);
+      return;
+    }
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
-      const distanceX = cursorPos.x - centerX;
-      const distanceY = cursorPos.y - centerY;
-      
+
+      const distanceX = e.clientX - centerX;
+      const distanceY = e.clientY - centerY;
+
       x.set(distanceX * 0.3);
       y.set(distanceY * 0.3);
-    } else {
-      x.set(0);
-      y.set(0);
-    }
-  }, [cursorPos, isHovered, isMobile, x, y]);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [isHovered, isMobile, x, y]);
 
   return (
     <motion.button

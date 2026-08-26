@@ -87,9 +87,9 @@ export default function Lab() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        {LAB_EXPERIMENTS.map((lab, idx) => (
+        {LAB_EXPERIMENTS.map((lab) => (
           <a
-            key={idx}
+            key={lab.title}
             href={lab.link}
             target="_blank"
             rel="noopener noreferrer"

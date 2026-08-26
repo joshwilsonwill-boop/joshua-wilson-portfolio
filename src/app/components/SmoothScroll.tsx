@@ -60,6 +60,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     });
     lenisRef.current = lenis;
 
+    // Cache skew targets to avoid layout thrashing on every scroll frame
+    const skewTargets = containerRef.current
+      ? containerRef.current.querySelectorAll(".skew-on-scroll")
+      : [];
+
     // Velocity-based skew effect on elements with .skew-on-scroll class
     lenis.on("scroll", (e) => {
       ScrollTrigger.update();
@@ -68,7 +73,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       // Max skew is 2 degrees
       const velocity = e.velocity;
       const skew = Math.max(-2, Math.min(2, velocity * 0.05));
-      const skewTargets = document.querySelectorAll(".skew-on-scroll");
 
       if (skewTargets.length) {
         gsap.to(skewTargets, {

@@ -102,9 +102,9 @@ export default function Work() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-        {PROJECTS.map((project, idx) => (
+        {PROJECTS.map((project) => (
           <Link
-            key={idx}
+            key={project.title}
             href={project.link || "/work"}
             className="project-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
           >

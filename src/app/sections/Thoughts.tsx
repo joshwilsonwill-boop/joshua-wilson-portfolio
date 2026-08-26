@@ -91,9 +91,9 @@ export default function Thoughts() {
       </div>
 
       <div className="flex flex-col border-t border-[rgba(255,255,255,0.04)]">
-        {POSTS.map((post, idx) => (
+        {POSTS.map((post) => (
           <Link
-            key={idx}
+            key={post.title}
             href="/thoughts"
             className="post-item group py-8 lg:py-12 border-b border-[rgba(255,255,255,0.04)] grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-[rgba(255,255,255,0.01)] transition-colors px-4 -mx-4 rounded-xl"
           >

@@ -3,7 +3,6 @@
 import { useRef, useMemo, useSyncExternalStore } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { useMousePosition } from "../hooks/useMousePosition";
 
 const vertexShader = `
 varying vec2 vUv;
@@ -90,7 +89,6 @@ void main() {
 const ChromePlane = ({ isMobile }: { isMobile: boolean }) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
-  const mouse = useMousePosition();
   const prevMouse = useRef(new THREE.Vector2(0, 0));
 
   const uniforms = useMemo(
@@ -107,7 +105,7 @@ const ChromePlane = ({ isMobile }: { isMobile: boolean }) => {
       materialRef.current.uniforms.u_time.value = state.clock.elapsedTime;
       
       if (!isMobile) {
-        const currentMouse = new THREE.Vector2(mouse.x, mouse.y);
+        const currentMouse = new THREE.Vector2(state.pointer.x, state.pointer.y);
         const velocity = currentMouse.distanceTo(prevMouse.current);
         prevMouse.current.copy(currentMouse);
 
