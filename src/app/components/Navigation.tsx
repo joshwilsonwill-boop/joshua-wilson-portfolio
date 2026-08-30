@@ -11,8 +11,10 @@ const LINKS = [
   { label: "About Me", href: "#about" },
   { label: "Stack", href: "#stack" },
   { label: "Services", href: "#services" },
-  { label: "Projects", href: "#work" },
+  { label: "Lab", href: "#lab" },
+  { label: "Featured Projects", href: "#work" },
   { label: "Thoughts", href: "#thoughts" },
+  { label: "Field Notes", href: "#field-notes" },
   { label: "Contact", href: "#contact" },
 ];
 
