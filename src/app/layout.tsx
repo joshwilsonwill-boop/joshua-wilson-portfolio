@@ -15,8 +15,53 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Joshua Wilson | Engineering the Invisible",
-  description: "Personal portfolio of Joshua Wilson — engineer and creative technologist.",
+  metadataBase: new URL("https://joshuawilson.dev"),
+  title: {
+    default: "Joshua Wilson | Engineering the Invisible",
+    template: "%s | Joshua Wilson",
+  },
+  description: "Personal portfolio of Joshua Wilson — Creative Technologist, Systems Engineer, and AI-Native Builder.",
+  keywords: [
+    "Joshua Wilson",
+    "Creative Technologist",
+    "Systems Engineer",
+    "WebGL",
+    "Three.js",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Prometheus Studio",
+    "AI Infrastructure",
+  ],
+  authors: [{ name: "Joshua Wilson" }],
+  creator: "Joshua Wilson",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://joshuawilson.dev",
+    title: "Joshua Wilson | Engineering the Invisible",
+    description: "Personal portfolio of Joshua Wilson — Creative Technologist & Systems Engineer.",
+    siteName: "Joshua Wilson Portfolio",
+    images: [
+      {
+        url: "/images/hero-red.png",
+        width: 1200,
+        height: 630,
+        alt: "Joshua Wilson — Creative Technologist",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Joshua Wilson | Engineering the Invisible",
+    description: "Personal portfolio of Joshua Wilson — Creative Technologist & Systems Engineer.",
+    creator: "@joshwilson_will",
+    images: ["/images/hero-red.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

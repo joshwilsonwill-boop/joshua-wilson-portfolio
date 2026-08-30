@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useMemo, useSyncExternalStore } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Float, Environment } from "@react-three/drei";
 
@@ -11,6 +11,13 @@ type FloatProps = React.ComponentProps<typeof Float>;
 function Sparkle(props: FloatProps) {
   const group = useRef<THREE.Group>(null);
   
+  useFrame((state) => {
+    if (group.current) {
+      group.current.rotation.x = THREE.MathUtils.lerp(group.current.rotation.x, state.pointer.y * 0.3, 0.05);
+      group.current.rotation.y = THREE.MathUtils.lerp(group.current.rotation.y, state.pointer.x * 0.3, 0.05);
+    }
+  });
+
   return (
     <Float speed={1.5} rotationIntensity={0.5} floatIntensity={1} {...props}>
       <group ref={group}>
