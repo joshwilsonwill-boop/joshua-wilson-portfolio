@@ -234,7 +234,7 @@ export default function Testimonials() {
         <div 
           className="flex gap-6 px-3"
           style={{
-            animation: `marquee 75s linear infinite`,
+            animation: `marquee 35s linear infinite`,
             animationPlayState: isPaused ? 'paused' : 'running',
           }}
         >
