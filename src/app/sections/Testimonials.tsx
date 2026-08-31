@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ScrollRevealText from "../components/ScrollRevealText";
 
-const ROW1_TESTIMONIALS = [
+const TESTIMONIALS = [
   {
     quote: "Joshua asked the uncomfortable questions early. By the time we started building, the architecture was clear and the team stopped guessing.",
     name: "Marcus Chen",
@@ -99,10 +99,7 @@ const ROW1_TESTIMONIALS = [
     name: "Tobi Akin",
     role: "Design Engineer",
     project: "Creative technology",
-  }
-];
-
-const ROW2_TESTIMONIALS = [
+  },
   {
     quote: "Joshua turned our GPU queue latency from 14 seconds down to sub-800ms. He approaches optimization with surgical precision.",
     name: "Alexander Wright",
@@ -234,50 +231,17 @@ export default function Testimonials() {
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
       >
-        {/* ROW 1: Scrolling Left */}
         <div 
           className="flex gap-6 px-3"
           style={{
-            animation: `marquee 85s linear infinite`,
+            animation: `marquee 140s linear infinite`,
             animationPlayState: isPaused ? 'paused' : 'running',
           }}
         >
-          {[...ROW1_TESTIMONIALS, ...ROW1_TESTIMONIALS].map((t, i) => (
+          {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
             <article
-              key={`row1-${t.name}-${i}`}
-              aria-hidden={i >= ROW1_TESTIMONIALS.length}
-              className="flex-shrink-0 flex flex-col justify-between bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl w-[min(400px,calc(100vw-3rem))] p-6 transition-transform duration-300 hover:-translate-y-1"
-            >
-              <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
-                &quot;{t.quote}&quot;
-              </p>
-              
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-10 h-10 rounded-full bg-[var(--chrome-dark)] flex items-center justify-center text-[var(--text-primary)] font-bold text-sm">
-                  {t.name.charAt(0)}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[0.875rem] font-bold text-[#f5f5f7]">{t.name}</span>
-                  <span className="text-[0.65rem] font-mono uppercase tracking-wider text-[var(--chrome-mid)]">{t.project}</span>
-                  <span className="text-[0.75rem] text-[#6e6e73]">{t.role}</span>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* ROW 2: Scrolling Right (Reverse) */}
-        <div 
-          className="flex gap-6 px-3"
-          style={{
-            animation: `marquee-reverse 90s linear infinite`,
-            animationPlayState: isPaused ? 'paused' : 'running',
-          }}
-        >
-          {[...ROW2_TESTIMONIALS, ...ROW2_TESTIMONIALS].map((t, i) => (
-            <article
-              key={`row2-${t.name}-${i}`}
-              aria-hidden={i >= ROW2_TESTIMONIALS.length}
+              key={`testimonial-${t.name}-${i}`}
+              aria-hidden={i >= TESTIMONIALS.length}
               className="flex-shrink-0 flex flex-col justify-between bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl w-[min(400px,calc(100vw-3rem))] p-6 transition-transform duration-300 hover:-translate-y-1"
             >
               <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
