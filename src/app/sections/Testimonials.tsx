@@ -234,7 +234,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section id="testimonials" className="w-full pt-[clamp(6rem,15vh,12rem)] pb-[clamp(3rem,8vh,6rem)] overflow-hidden bg-[var(--bg-primary)]">
+    <section id="testimonials" className="w-full pt-[clamp(6rem,15vh,12rem)] pb-[clamp(3rem,8vh,6rem)] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight text-[var(--text-primary)] font-display mb-2">Testimonials</h2>
