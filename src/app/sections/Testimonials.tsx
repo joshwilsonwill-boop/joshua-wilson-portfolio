@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
+import { Pause, Play } from "lucide-react";
 import ScrollRevealText from "../components/ScrollRevealText";
-import OptimizedCarousel from "../components/OptimizedCarousel";
 
 const TESTIMONIALS = [
   {
@@ -199,42 +200,103 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
-  const items = TESTIMONIALS.map((t, idx) => (
-    <article
-      key={`testimonial-${t.name}-${idx}`}
-      className="flex flex-col justify-between h-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 md:p-8"
-      style={{
-        // Remove backdrop-filter here if it was present, replace with solid color if needed
-        // No heavy box-shadow, no border-radius + overflow:hidden clipping issues
-      }}
-    >
-      <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
-        &quot;{t.quote}&quot;
-      </p>
-      
-      <div className="flex items-center gap-4 mt-auto">
-        <div className="w-10 h-10 rounded-full bg-[var(--chrome-dark)] flex items-center justify-center text-[var(--text-primary)] font-bold text-sm">
-          {t.name.charAt(0)}
-        </div>
-        <div className="flex flex-col">
-          <span className="text-[0.875rem] font-bold text-[#f5f5f7]">{t.name}</span>
-          <span className="text-[0.65rem] font-mono uppercase tracking-wider text-[var(--chrome-mid)]">{t.project}</span>
-          <span className="text-[0.75rem] text-[#6e6e73]">{t.role}</span>
-        </div>
-      </div>
-    </article>
-  ));
+  const [isButtonPaused, setIsButtonPaused] = useState(false);
+  const [isInteractionPaused, setIsInteractionPaused] = useState(false);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // The marquee is paused if either the button is toggled or the user is interacting with a card.
+  const isPaused = isButtonPaused || isInteractionPaused;
+
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+
+    const handleInteractionStart = () => setIsInteractionPaused(true);
+    const handleInteractionEnd = () => setIsInteractionPaused(false);
+
+    track.addEventListener("mouseenter", handleInteractionStart, { passive: true });
+    track.addEventListener("mouseleave", handleInteractionEnd, { passive: true });
+    track.addEventListener("mousedown", handleInteractionStart, { passive: true });
+    track.addEventListener("mouseup", handleInteractionEnd, { passive: true });
+    track.addEventListener("touchstart", handleInteractionStart, { passive: true });
+    track.addEventListener("touchend", handleInteractionEnd, { passive: true });
+    track.addEventListener("touchcancel", handleInteractionEnd, { passive: true });
+
+    return () => {
+      track.removeEventListener("mouseenter", handleInteractionStart);
+      track.removeEventListener("mouseleave", handleInteractionEnd);
+      track.removeEventListener("mousedown", handleInteractionStart);
+      track.removeEventListener("mouseup", handleInteractionEnd);
+      track.removeEventListener("touchstart", handleInteractionStart);
+      track.removeEventListener("touchend", handleInteractionEnd);
+      track.removeEventListener("touchcancel", handleInteractionEnd);
+    };
+  }, []);
 
   return (
-    <section id="testimonials" className="w-full pt-[clamp(6rem,15vh,12rem)] pb-[clamp(3rem,8vh,6rem)] overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] mb-16">
+    <section id="testimonials" className="w-full pt-[clamp(6rem,15vh,12rem)] pb-[clamp(3rem,8vh,6rem)] overflow-hidden bg-[var(--bg-primary)]">
+      <div className="max-w-[1400px] mx-auto px-[clamp(1.5rem,5vw,4rem)] mb-12 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
         <div>
           <h2 className="text-[clamp(2rem,5vw,3.5rem)] font-bold tracking-tight text-[var(--text-primary)] font-display mb-2">Testimonials</h2>
           <ScrollRevealText className="text-[1rem] text-[var(--text-secondary)]">Notes from people I&apos;ve built alongside.</ScrollRevealText>
         </div>
+        
+        <button
+          onClick={() => setIsButtonPaused(!isButtonPaused)}
+          className="flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[var(--text-primary)] hover:bg-[rgba(255,255,255,0.1)] transition-colors text-sm font-medium"
+          aria-label={isButtonPaused ? "Play testimonials" : "Pause testimonials"}
+        >
+          {isButtonPaused ? (
+            <>
+              <Play size={16} className="fill-current" />
+              <span>Resume</span>
+            </>
+          ) : (
+            <>
+              <Pause size={16} className="fill-current" />
+              <span>Pause</span>
+            </>
+          )}
+        </button>
       </div>
 
-      <OptimizedCarousel items={items} />
+      {/* Marquee Outer Container */}
+      <div className="relative w-full overflow-hidden">
+        {/* Marquee Track Wrapper */}
+        <div 
+          ref={trackRef}
+          className="flex flex-nowrap w-max"
+          style={{
+            animation: `continuous-marquee 30s linear infinite`,
+            animationPlayState: isPaused ? 'paused' : 'running',
+            willChange: 'transform'
+          }}
+        >
+          {/* Double the array for seamless infinite looping */}
+          {[...TESTIMONIALS, ...TESTIMONIALS].map((t, idx) => (
+            <article
+              key={`testimonial-${idx}`}
+              className="flex-shrink-0 flex flex-col justify-between w-[min(400px,calc(100vw-3rem))] mx-3 bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 md:p-8"
+              style={{ contain: 'layout paint' }}
+            >
+              <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
+                &quot;{t.quote}&quot;
+              </p>
+              
+              <div className="flex items-center gap-4 mt-auto">
+                <div className="w-10 h-10 rounded-full bg-[var(--chrome-dark)] flex items-center justify-center text-[var(--text-primary)] font-bold text-sm">
+                  {t.name.charAt(0)}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[0.875rem] font-bold text-[#f5f5f7]">{t.name}</span>
+                  <span className="text-[0.65rem] font-mono uppercase tracking-wider text-[var(--chrome-mid)]">{t.project}</span>
+                  <span className="text-[0.75rem] text-[#6e6e73]">{t.role}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

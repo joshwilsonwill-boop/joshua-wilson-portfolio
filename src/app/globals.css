@@ -105,3 +105,8 @@ body {
 .animate-float-2 { animation: float-2 4.5s ease-in-out infinite; will-change: transform; }
 .animate-float-3 { animation: float-3 6s ease-in-out infinite; will-change: transform; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; } .hide-scrollbar::-webkit-scrollbar { display: none; }
+
+@keyframes continuous-marquee {
+  0% { transform: translate3d(0%, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
