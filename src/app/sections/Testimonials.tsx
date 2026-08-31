@@ -267,7 +267,7 @@ export default function Testimonials() {
           ref={trackRef}
           className="flex flex-nowrap w-max"
           style={{
-            animation: `continuous-marquee 40s linear infinite`,
+            animation: `continuous-marquee 60s linear infinite`,
             animationPlayState: isPaused ? 'paused' : 'running',
             willChange: 'transform'
           }}
