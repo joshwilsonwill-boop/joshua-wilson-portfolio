@@ -199,8 +199,9 @@ const TESTIMONIALS = [
 ];
 
 export default function Testimonials() {
-  const items = TESTIMONIALS.map((t) => (
+  const items = TESTIMONIALS.map((t, idx) => (
     <article
+      key={`testimonial-${t.name}-${idx}`}
       className="flex flex-col justify-between h-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl p-6 md:p-8"
       style={{
         // Remove backdrop-filter here if it was present, replace with solid color if needed
