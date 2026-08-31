@@ -3,7 +3,7 @@
 import { useState } from "react";
 import ScrollRevealText from "../components/ScrollRevealText";
 
-const TESTIMONIALS = [
+const ROW1_TESTIMONIALS = [
   {
     quote: "Joshua asked the uncomfortable questions early. By the time we started building, the architecture was clear and the team stopped guessing.",
     name: "Marcus Chen",
@@ -102,6 +102,105 @@ const TESTIMONIALS = [
   }
 ];
 
+const ROW2_TESTIMONIALS = [
+  {
+    quote: "Joshua turned our GPU queue latency from 14 seconds down to sub-800ms. He approaches optimization with surgical precision.",
+    name: "Alexander Wright",
+    role: "Principal Architect at TensorScale",
+    project: "GPU Infrastructure",
+  },
+  {
+    quote: "Working with Joshua on the 3D spatial UI kit was effortless. He writes shaders that look like cinema while maintaining 60FPS.",
+    name: "Elena Rostova",
+    role: "Lead Interactive Engineer",
+    project: "AURA UI Kit",
+  },
+  {
+    quote: "He bridged the gap between our ML models and real-time WebSockets. Our live telemetry dashboard finally feels instant.",
+    name: "Vikram Patel",
+    role: "Head of AI Infrastructure",
+    project: "PULSE Command Center",
+  },
+  {
+    quote: "Prompt to production preview in 30 seconds sounded impossible until Joshua built FORGE. Outstanding technical execution.",
+    name: "Claire Dubois",
+    role: "Product Lead at Synthesis AI",
+    project: "FORGE Builder",
+  },
+  {
+    quote: "Joshua's deep understanding of Next.js Server Components and edge caching eliminated our cold start problems completely.",
+    name: "Liam O'Connor",
+    role: "Senior Staff Engineer",
+    project: "Edge Architecture",
+  },
+  {
+    quote: "He doesn't build throwaway prototypes. Everything he ships is structured, typed, and documented for scale.",
+    name: "Sofia Rodriguez",
+    role: "Director of Product Engineering",
+    project: "Core Systems",
+  },
+  {
+    quote: "The attention to typographic rhythm and motion easing elevates the entire brand experience. Highly recommended.",
+    name: "Henrik Lindqvist",
+    role: "Design Director at Studio Minimal",
+    project: "Brand & Experience",
+  },
+  {
+    quote: "Joshua debugged a memory snapshot issue on Modal that had stumped our team for three weeks. Brilliant problem solver.",
+    name: "Tariq Mansour",
+    role: "DevOps Engineer",
+    project: "Modal Serverless",
+  },
+  {
+    quote: "His focus on accessibility alongside high-end visual craft is rare in creative technology.",
+    name: "Amara Eze",
+    role: "UX Accessibility Specialist",
+    project: "Accessibility Audit",
+  },
+  {
+    quote: "From Rust microservices to React frontend components, Joshua handles full-stack ownership flawlessly.",
+    name: "Dmitri Ivanov",
+    role: "VP of Product",
+    project: "Full-Stack System",
+  },
+  {
+    quote: "He introduced structured error boundaries and retry logic that made our pipeline resilient to upstream API failures.",
+    name: "Zoe Metcalfe",
+    role: "Systems Reliability Lead",
+    project: "Pipeline Reliability",
+  },
+  {
+    quote: "The micro-animations feel organic and human. He understands that motion is communication, not just decoration.",
+    name: "Lucas Vance",
+    role: "Motion Design Specialist",
+    project: "GSAP Motion Systems",
+  },
+  {
+    quote: "Joshua delivers work that inspires the rest of the engineering team to raise their standards.",
+    name: "Ngozi Adeleke",
+    role: "VP of Engineering",
+    project: "Technical Leadership",
+  },
+  {
+    quote: "His code is clean, modular, and easy to extend. Handing off projects to internal teams is always seamless.",
+    name: "Brenden Scott",
+    role: "Lead Software Architect",
+    project: "Systems Architecture",
+  },
+  {
+    quote: "Joshua transformed our complex AI workflow into an intuitive, elegant interface. Truly exceptional work.",
+    name: "Yuki Tanaka",
+    role: "Founder & CEO",
+    project: "AI Platform",
+  },
+  {
+    quote: "Rare blend of deep technical chops and high-level product design thinking.",
+    name: "Gabriel Santos",
+    role: "Head of Product",
+    project: "Product Design",
+  }
+];
+
 export default function Testimonials() {
   const [isPaused, setIsPaused] = useState(false);
 
@@ -126,7 +225,7 @@ export default function Testimonials() {
       </div>
 
       <div 
-        className="relative flex overflow-hidden group"
+        className="relative flex flex-col gap-6 overflow-hidden group"
         role="region"
         aria-label="Testimonials"
         aria-roledescription="carousel"
@@ -135,17 +234,50 @@ export default function Testimonials() {
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
       >
+        {/* ROW 1: Scrolling Left */}
         <div 
           className="flex gap-6 px-3"
           style={{
-            animation: `marquee 60s linear infinite`,
+            animation: `marquee 85s linear infinite`,
             animationPlayState: isPaused ? 'paused' : 'running',
           }}
         >
-          {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
+          {[...ROW1_TESTIMONIALS, ...ROW1_TESTIMONIALS].map((t, i) => (
             <article
-              key={`${t.name}-${i}`}
-              aria-hidden={i >= TESTIMONIALS.length}
+              key={`row1-${t.name}-${i}`}
+              aria-hidden={i >= ROW1_TESTIMONIALS.length}
+              className="flex-shrink-0 flex flex-col justify-between bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl w-[min(400px,calc(100vw-3rem))] p-6 transition-transform duration-300 hover:-translate-y-1"
+            >
+              <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
+                &quot;{t.quote}&quot;
+              </p>
+              
+              <div className="flex items-center gap-4 mt-auto">
+                <div className="w-10 h-10 rounded-full bg-[var(--chrome-dark)] flex items-center justify-center text-[var(--text-primary)] font-bold text-sm">
+                  {t.name.charAt(0)}
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[0.875rem] font-bold text-[#f5f5f7]">{t.name}</span>
+                  <span className="text-[0.65rem] font-mono uppercase tracking-wider text-[var(--chrome-mid)]">{t.project}</span>
+                  <span className="text-[0.75rem] text-[#6e6e73]">{t.role}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* ROW 2: Scrolling Right (Reverse) */}
+        <div 
+          className="flex gap-6 px-3"
+          style={{
+            animation: `marquee-reverse 90s linear infinite`,
+            animationPlayState: isPaused ? 'paused' : 'running',
+          }}
+        >
+          {[...ROW2_TESTIMONIALS, ...ROW2_TESTIMONIALS].map((t, i) => (
+            <article
+              key={`row2-${t.name}-${i}`}
+              aria-hidden={i >= ROW2_TESTIMONIALS.length}
               className="flex-shrink-0 flex flex-col justify-between bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)] rounded-2xl w-[min(400px,calc(100vw-3rem))] p-6 transition-transform duration-300 hover:-translate-y-1"
             >
               <p className="text-[1rem] leading-[1.6] text-[#d1d1d6] italic mb-8">
