@@ -22,8 +22,11 @@ test.describe('Navigation & Section Link Tests', () => {
       'Contact',
     ];
 
+    // Scope to the dropdown: the footer renders links with the same labels.
+    const menu = page.locator('#site-menu');
+
     for (const label of expectedLinks) {
-      const link = page.locator(`a:has-text("${label}")`);
+      const link = menu.locator(`a:has-text("${label}")`);
       await expect(link).toBeVisible();
     }
   });

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useSyncExternalStore } from "react";
 import { Pause, Play } from "lucide-react";
 import ScrollRevealText from "../components/ScrollRevealText";
 
@@ -202,10 +202,24 @@ const TESTIMONIALS = [
 export default function Testimonials() {
   const [isButtonPaused, setIsButtonPaused] = useState(false);
   const [isInteractionPaused, setIsInteractionPaused] = useState(false);
+  const [userOptedIn, setUserOptedIn] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
 
   // The marquee is paused if either the button is toggled or the user is interacting with a card.
   const isPaused = isButtonPaused || isInteractionPaused;
+
+  // Respect prefers-reduced-motion: hold the marquee paused until the user explicitly resumes.
+  const reducedMotion = useSyncExternalStore(
+    (onChange) => {
+      const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => false
+  );
+  const autoPaused = reducedMotion && !userOptedIn;
+  const isEffectivelyPaused = isPaused || autoPaused;
 
   useEffect(() => {
     const track = trackRef.current;
@@ -242,11 +256,17 @@ export default function Testimonials() {
         </div>
         
         <button
-          onClick={() => setIsButtonPaused(!isButtonPaused)}
+          onClick={() => {
+            if (autoPaused) {
+              setUserOptedIn(true);
+            } else {
+              setIsButtonPaused(!isButtonPaused);
+            }
+          }}
           className="flex items-center gap-2 px-4 py-2 rounded-full bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] text-[var(--text-primary)] hover:bg-[rgba(255,255,255,0.1)] transition-colors text-sm font-medium"
-          aria-label={isButtonPaused ? "Play testimonials" : "Pause testimonials"}
+          aria-label={isEffectivelyPaused ? "Play testimonials" : "Pause testimonials"}
         >
-          {isButtonPaused ? (
+          {isEffectivelyPaused ? (
             <>
               <Play size={16} className="fill-current" />
               <span>Resume</span>
@@ -268,7 +288,7 @@ export default function Testimonials() {
           className="flex flex-nowrap w-max"
           style={{
             animation: `continuous-marquee 90s linear infinite`,
-            animationPlayState: isPaused ? 'paused' : 'running',
+            animationPlayState: isEffectivelyPaused ? 'paused' : 'running',
             willChange: 'transform'
           }}
         >

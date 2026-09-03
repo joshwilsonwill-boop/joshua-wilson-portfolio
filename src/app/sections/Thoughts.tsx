@@ -50,7 +50,7 @@ export default function Thoughts() {
   useGSAP(() => {
     if (!containerRef.current) return;
 
-    const cards = containerRef.current.querySelectorAll(".post-card");
+    const cards = containerRef.current.querySelectorAll(".post-item");
     
     gsap.fromTo(
       cards,
@@ -92,9 +92,8 @@ export default function Thoughts() {
 
       <div className="flex flex-col border-t border-[rgba(255,255,255,0.04)]">
         {POSTS.map((post) => (
-          <Link
+          <article
             key={post.title}
-            href="/thoughts"
             className="post-item group py-8 lg:py-12 border-b border-[rgba(255,255,255,0.04)] grid grid-cols-1 md:grid-cols-12 gap-6 items-start hover:bg-[rgba(255,255,255,0.01)] transition-colors px-4 -mx-4 rounded-xl"
           >
             <div className="md:col-span-3 flex flex-col pt-1">
@@ -122,7 +121,7 @@ export default function Thoughts() {
                 loading="lazy"
               />
             </div>
-          </Link>
+          </article>
         ))}
       </div>
 
