@@ -40,4 +40,19 @@ test.describe('Navigation & Section Link Tests', () => {
       expect(page.url()).toContain(route);
     }
   });
+
+  test('Lab cards are informational and the archive remains reachable', async ({ page }) => {
+    for (const route of ['/', '/lab']) {
+      await page.goto(route);
+      const lab = page.locator('#lab');
+      await expect(lab.locator('article.lab-card')).toHaveCount(4);
+      await expect(lab.locator('.lab-card a, a.lab-card')).toHaveCount(0);
+
+      if (route === '/') {
+        await lab.getByRole('link', { name: 'View All Experiments' }).filter({ visible: true }).click();
+        await expect(page).toHaveURL(/\/lab$/);
+        await expect(page.getByRole('heading', { name: 'Lab Archive', exact: true })).toBeVisible();
+      }
+    }
+  });
 });

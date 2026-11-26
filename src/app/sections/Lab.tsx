@@ -84,9 +84,8 @@ export default function Lab() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
         {LAB_EXPERIMENTS.map((lab) => (
-          <Link
+          <article
             key={lab.title}
-            href="/lab"
             className="lab-card group flex flex-col bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,255,255,0.12)] hover:-translate-y-1 transition-all duration-300 rounded-[1rem] overflow-hidden"
           >
             <div className="w-full aspect-video relative overflow-hidden bg-[var(--bg-surface)] border-b border-[rgba(255,255,255,0.04)]">
@@ -115,7 +114,7 @@ export default function Lab() {
                 </span>
               </div>
             </div>
-          </Link>
+          </article>
         ))}
       </div>
 
