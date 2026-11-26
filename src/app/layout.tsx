@@ -94,7 +94,7 @@ const personSchema = {
   "name": "Joshua Wilson",
   "sameAs": [
     "https://github.com/joshwilsonwill-boop",
-    "https://www.linkedin.com/in/great-joshua-767b62252",
+    "https://www.linkedin.com/in/joshua-wilson-55850b452",
     "https://x.com/joshwilson_will",
     "https://x.com/gadflyrebel",
     "https://www.instagram.com/i_m_joshwilson/",
