@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://joshuawilson.dev/sitemap.xml",
+    sitemap: "https://joshbuilds.me/sitemap.xml",
   };
 }

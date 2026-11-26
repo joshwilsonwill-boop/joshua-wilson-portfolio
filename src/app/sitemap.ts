@@ -2,7 +2,7 @@ export const dynamic = "force-static";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://joshuawilson.dev";
+  const baseUrl = "https://joshbuilds.me";
 
   const routes = [
     "",
